@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Innerlijke Stilte Oefening</title>
+  <!-- Open Graph metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sjc-van-hoof.github.io/SilentMind/" />
+  <meta property="og:title" content="Innerlijke Stilte Oefening" />
+  <meta property="og:description" content="Doe mee aan een korte, drie-stappen oefening begeleid door audio en deel je ervaring via een evaluatieformulier." />
+  <meta property="og:image" content="https://sjc-van-hoof.github.io/SilentMind/Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg" />
+  <style>
+    body {
+      background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    h1 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      color: #ffa500;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    .intro {
+      background-color: rgba(44,44,44,0.8);
+      color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 1rem auto;
+      border: 2px solid #ffa500;
+      max-width: 600px;
+      line-height: 1.4;
+      backdrop-filter: blur(5px);
+    }
+    .step {
+      background-color: rgba(34,46,60,0.8);
+      color: #eee;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 2px solid #ffa500;
+      max-width: 600px;
+      width: 90%;
+      margin-bottom: 2rem;
+      display: none;
+      backdrop-filter: blur(5px);
+    }
+    h2 {
+      margin-bottom: 0.75rem;
+      color: #ffa500;
+      font-size: 1.25rem;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    button {
+      background-color: rgba(31,31,31,0.8);
+      color: #ffa500;
+      border: 2px solid #ffa500;
+      padding: 0.5rem 1rem;
+      margin-top: 0.75rem;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      transition: background-color 0.2s, color 0.2s;
+      backdrop-filter: blur(5px);
+    }
+    button:hover:not(:disabled) {
+      background-color: #ffa500;
+      color: #1c2733;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    #count-3 {
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 600px;
+      background-color: rgba(255,255,255,0.9);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    .fallback {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    .fallback a {
+      color: #ffa500;
+      text-decoration: none;
+    }
+    .fallback a:hover {
+      text-decoration: underline;
+    }
+    #reset-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: #b22222;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      z-index: 1000;
+      font-size: 0.9rem;
+      backdrop-filter: blur(5px);
+    }
+    #reset-button:hover {
+      background-color: #ff4500;
+    }
+    @media (max-width: 600px) {
+      html, body {
+        min-height: 100vh;
+        background-attachment: scroll;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        overscroll-behavior: contain;
+      }
+      h1 { font-size: 1.5rem; }
+      .intro, .step { width: 98%; font-size: 0.95rem; margin: 0.5rem auto; }
+      button { font-size: 1rem; padding: 0.7rem 1.2rem; }
+      iframe { height: 350px; }
+      #reset-button {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+      }
+      button { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
+      iframe { height: 400px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <h1>Innerlijke Stilte Oefening</h1>
+  <button id="reset-button">Begin opnieuw</button>
+
+  <!-- Introductie zichtbaar bij laden -->
+  <div class="intro" id="intro">
+    <p>
+      Dit is een kleine makkelijke oefening van drie stappen.<br>
+      Bedoeld om innerlijke rust te ervaren.<br>
+      Gebruik oortjes als je dat prettig vindt.<br><br>
+      Wat we gaan doen:<br>
+      Stap 1: Korte uitleg = alleen luisteren.<br>
+      Stap 2: Kennismaking met de Methode = luisteren en enkele woorden hardop herhalen.<br>
+      Stap 3: Oefening = oefen door mijn woorden herhalen. Doe dit 3x.<br><br>
+      Je mag de 3 oefeningen onderbreken en later oppakken. Ik zal onthouden waar je bent gebleven.<br>
+      Na 3x oefenen volgen enkele vragen om je ervaring te delen. <br>
+      Het doel van deze oefening is om te onderzoeken bij wie dit werkt en hoe het wordt ervaren.<br><br>
+      Na de vragen kun je zelf zo vaak als je wil verder oefenen in stap 3.<br>
+      Als je helemaal opnieuw wil beginnen ga dan naar "opnieuw beginnen" rechts boven.<br>
+    </p>
+    <button id="continue-intro">Verder</button>
+  </div>
+
+  <!-- Stap 1 -->
+  <div id="step-1" class="step">
+    <h2>Stap 1</h2>
+    <p>Nu volgt de uitleg.<br>
+      Het duurt ongeveer 1 minuut. <br>
+      Luister naar wat ik te zeggen heb.<br>
+    </p>
+    <button id="play-1">Uitleg</button>
+    <button id="next-1" disabled>Volgende</button>
+    <img src="Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg" alt="Testafbeelding" width="200">
+    <audio id="audio-1" src="Media/BTN-1.mp3">
+      Your browser does not support audio playback.
+    </audio>
+  </div>  body {
+    background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
+    /* ...rest van je CSS... */
+  }  body {
+    background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
+    /* ...rest van je CSS... */
+  }  body {
+    background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
+    /* ...rest van je CSS... */
+  }  body {
+    background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
+    /* ...rest van je CSS... */
+  }  body {
+    background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
+    /* ...rest van je CSS... */
+  }
+
+  <!-- Stap 2 -->
+  <div id="step-2" class="step">
+    <h2>Stap 2</h2>
+    <p>In dit deel maak je kennis met de methode.<br>
+      Deze is heel simpel.<br>
+      Ik zal je begeleiden. <br>
+      Zorg dat je op een rustige plek bent.<br>
+      En dat je zachtjes tegen jezelf kunt praten.<br>
+      Het wijst zichzelf.<br>
+    </p>
+    <button id="play-2">Methode</button>
+    <button id="next-2" disabled>Volgende</button>
+    <audio id="audio-2" src="Media/BTN-2.mp3"></audio>
+  </div>
+
+  <!-- Stap 3 -->
+  <div id="step-3" class="step">
+    <h2>Stap 3</h2>
+    <p>In de vorige stap maakte je kennis met de methode.<br>
+      Misschien heb je al iets gemerkt. Misschien nog niet.<br><br>
+      Je gaat nu 3x oefenen, op een rustige plek, zodat je weet of het bij jou werkt.<br>
+      Ik zal je blijven begeleiden. Je hoeft enkel mijn woorden te herhalen.<br><br>
+      Je mag deze 3 oefeningen spreiden over meerdere momenten.<br>
+      Na 3 keer oefenen komt het vragenlijstje.<br><br>
+      Daarna kun je, desgewenst, stap drie blijven herhalen zo vaak als je wil.<br>
+      Mocht je op een ander tijdstip deze hele oefening vanaf het begin willen herhalen, ga dan naar "opnieuw beginnen" rechts boven.<br>
+    </p>
+    <button id="play-3">Oefening</button><span id="count-3">Herhalingen: 0</span>
+    <audio id="audio-3" src="Media/BTN-3.mp3"></audio>
+  </div>
+
+  <!-- Evaluatie -->
+  <div id="evaluation-step" class="step">
+    <h2>Evaluatie</h2>
+    <p id="text-block-4">
+      Dankjewel. Je hebt nu deze oefening 3x zelf doorlopen.<br>
+      Om er achter te komen bij wie dit werkt en bij wie niet, wil ik graag dat je me feedback geeft.<br>
+      Als blijkt dat dit bij meerderen werkt en als dit waardevol genoeg blijkt te zijn om verder te ontwikkelen, dan zal ik een training opzetten.<br>
+      In deze training zal ik je leren om de duur van deze stilte te verlengen en deze vaardigheid toe te passen op de juiste momenten.<br>
+    </p>
+    <p class="fallback">
+      Werkt de embed niet? <a id="fallback-link" href="https://docs.google.com/forms/d/e/1FAIpQLSfirLxCseo9n8lk0mTrL5BGosLai2ymXq2DQ66Pl3kJ5bJmRw/viewform" target="_blank">Open het formulier</a>.
+    </p>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfirLxCseo9n8lk0mTrL5BGosLai2ymXq2DQ66Pl3kJ5bJmRw/viewform?embedded=true"
+      width="640" height="1911" frameborder="0" marginheight="0" marginwidth="0">
+      Laden…
+    </iframe>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let step3Count = parseInt(localStorage.getItem('step3Count')) || 0;
+      const countDisplay = document.getElementById('count-3');
+
+      function updateCount() {
+        countDisplay.textContent = 'Herhalingen: ' + step3Count;
+      }
+
+      function showStep(id) {
+        document.getElementById('intro').style.display = 'none';
+        document.querySelectorAll('.step').forEach(el => el.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+        localStorage.setItem('currentStep', id);
+      }
+
+      // Init: toon alleen intro
+      document.getElementById('intro').style.display = 'block';
+
+      // Verder-knop toont stap-1 of opgeslagen stap
+      document.getElementById('continue-intro').onclick = function() {
+        const saved = localStorage.getItem('currentStep');
+        showStep(saved && ['step-1','step-2','step-3','evaluation-step'].includes(saved) ? saved : 'step-1');
+      };
+
+      // --- AUDIO BUTTON LOGIC (PAUSE/RESUME/REPLAY) ---
+      function setupAudioControls(audioId, btnId, nextId, defaultText) {
+        const audio = document.getElementById(audioId);
+        const btn = document.getElementById(btnId);
+        const next = nextId ? document.getElementById(nextId) : null;
+
+        function setBtnText(state) {
+          if (state === 'default') btn.textContent = defaultText;
+          else if (state === 'playing') btn.textContent = 'Pauze';
+          else if (state === 'paused') btn.textContent = 'Verder';
+          else if (state === 'ended') btn.textContent = 'Opnieuw';
+        }
+
+        setBtnText('default');
+        if (next) next.disabled = true;
+
+        btn.onclick = function() {
+          if (audio.ended || audio.currentTime === audio.duration) {
+            audio.currentTime = 0;
+            audio.play();
+            setBtnText('playing');
+            if (next) next.disabled = true;
+            return;
+          }
+          if (!audio.paused && !audio.ended) {
+            audio.pause();
+            setBtnText('paused');
+            if (next) next.disabled = true;
+            return;
+          }
+          if (audio.paused && !audio.ended) {
+            audio.play();
+            setBtnText('playing');
+            if (next) next.disabled = true;
+            return;
+          }
+        };
+
+        audio.onplay = function() {
+          setBtnText('playing');
+          if (next) next.disabled = true;
+        };
+        audio.onpause = function() {
+          if (!audio.ended) {
+            setBtnText('paused');
+            if (next) next.disabled = true;
+          }
+        };
+        audio.onended = function() {
+          setBtnText('ended');
+          if (next) next.disabled = false;
+        };
+
+        function resetBtn() {
+          setBtnText('default');
+          if (next) next.disabled = true;
+          audio.currentTime = 0;
+        }
+        return resetBtn;
+      }
+
+      // Stap 1
+      const resetBtn1 = setupAudioControls('audio-1', 'play-1', 'next-1', 'Uitleg');
+      document.getElementById('next-1').onclick = function() { 
+        resetBtn1();
+        showStep('step-2'); 
+      };
+
+      // Stap 2
+      const resetBtn2 = setupAudioControls('audio-2', 'play-2', 'next-2', 'Methode');
+      document.getElementById('next-2').onclick = function() { 
+        resetBtn2();
+        showStep('step-3'); 
+      };
+
+      // Stap 3 (zonder next-knop)
+      setupAudioControls('audio-3', 'play-3', null, 'Oefening');
+
+      // Stap 3 extra logica voor herhalingen
+      const audio3 = document.getElementById('audio-3');
+      const btn3 = document.getElementById('play-3');
+      function setBtn3Text(state) {
+        if (state === 'default') btn3.textContent = 'Oefening';
+        else if (state === 'playing') btn3.textContent = 'Pauze';
+        else if (state === 'paused') btn3.textContent = 'Verder';
+        else if (state === 'ended') btn3.textContent = 'Opnieuw';
+      }
+      setBtn3Text('default');
+      btn3.disabled = false;
+      updateCount();
+
+      audio3.onended = function() {
+        step3Count++;
+        localStorage.setItem('step3Count', step3Count);
+        updateCount();
+        setBtn3Text('ended');
+        btn3.disabled = false;
+        if (step3Count >= 3) showStep('evaluation-step'); else showStep('step-3');
+      };
+
+      // Evaluation fallback hides form on click
+      document.getElementById('fallback-link').onclick = function() {
+        localStorage.setItem('evaluated','true');
+        showStep('step-3');
+      };
+
+      // Reset button logic
+      document.getElementById('reset-button').onclick = function() {
+        localStorage.clear();
+        location.reload();
+      };
+    });
+  </script>
+</body>
+</html>
