@@ -485,6 +485,43 @@
       .theme-b button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-b iframe { height: 500px; }
     }
+
+    /* Google Translate styling in toolbar */
+    #google_translate_element {
+      display: none;
+      position: absolute;
+      right: 120px;
+      bottom: 60px;
+      z-index: 3000;
+      background: #23262b;
+      border-radius: 14px;
+      padding: 8px 12px;
+      box-shadow: 0 4px 24px #0004;
+    }
+    #google_translate_element select {
+      background: #23262b;
+      color: #fff;
+      border-radius: 8px;
+      border: 1.5px solid #fff;
+      padding: 4px 8px;
+      font-size: 1rem;
+      font-family: 'Quicksand', Arial, sans-serif;
+      margin: 0;
+    }
+    #google_translate_element span {
+      color: #fff !important;
+    }
+    @media (max-width: 600px) {
+      #google_translate_element {
+        right: 16px;
+        bottom: 44px;
+        padding: 4px 6px;
+      }
+      #google_translate_element select {
+        font-size: 0.95rem;
+        padding: 2px 4px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -595,6 +632,9 @@
   <!-- Toolbar onderaan -->
   <div class="bottom-toolbar">
     <button id="theme-switch" class="theme-switch-btn" title="Wissel stijl" aria-label="Wissel stijl">Stijl</button>
+    <button id="lang-switch" class="theme-switch-btn" title="Taal kiezen" aria-label="Taal kiezen" style="font-size:1.2rem;display:flex;align-items:center;gap:0.4em;">
+      <span style="font-size:1.3em;line-height:1;">🌐</span> Taal
+    </button>
     <button id="reset-button" class="home-btn" title="Home" aria-label="Home">
       <svg class="home-icon" viewBox="0 0 32 32" fill="none">
         <path d="M6 16L16 8L26 16" />
@@ -602,6 +642,40 @@
       </svg>
     </button>
   </div>
+
+  <!-- Google Translate Widget -->
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'nl',
+        includedLanguages: 'nl,en,es,de',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+
+    // Toon/verberg het menu bij klikken op de knop
+    document.addEventListener('DOMContentLoaded', function() {
+      var langBtn = document.getElementById('lang-switch');
+      var el = document.getElementById('google_translate_element');
+      langBtn.onclick = function(e) {
+        e.stopPropagation();
+        el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+        setTimeout(function() {
+          var select = el.querySelector('select');
+          if (select) select.focus();
+        }, 400);
+      };
+      // Klik buiten het menu sluit het menu
+      document.addEventListener('click', function(e) {
+        if (el.style.display === 'block' && !el.contains(e.target) && e.target !== langBtn) {
+          el.style.display = 'none';
+        }
+      });
+    });
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
   // --- THEMA WISSELEN OP BASIS VAN URL EN KNOP ---
