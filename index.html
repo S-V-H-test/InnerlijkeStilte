@@ -50,7 +50,7 @@
       backdrop-filter: blur(5px);
       text-align: left;
       position: relative;
-      padding-bottom: 90px; /* <-- toegevoegd voor toolbar ruimte */
+      padding-bottom: 60px; /* aangepast voor compactere toolbar */
     }
     .theme-a .step, body:not(.theme-b) .step { display: none; }
     .theme-a h2, body:not(.theme-b) h2 {
@@ -167,7 +167,7 @@
         overscroll-behavior: contain;
       }
       .theme-a h1, body:not(.theme-b) h1 { font-size: 1.5rem; }
-      .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; padding-bottom: 90px; }
+      .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; padding-bottom: 60px; }
       .theme-a button, body:not(.theme-b) button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-a iframe, body:not(.theme-b) iframe { height: 350px; }
       .theme-a .frame-logo, body:not(.theme-b) .frame-logo {
@@ -218,7 +218,7 @@
       text-align: left;
       position: relative;
       transition: box-shadow 0.2s;
-      padding-bottom: 90px; /* <-- toegevoegd voor toolbar ruimte */
+      padding-bottom: 60px; /* aangepast voor compactere toolbar */
     }
     .theme-b .step { display: none; }
     .theme-b h2 {
@@ -336,7 +336,7 @@
     }
     @media (max-width: 600px) {
       .theme-b h1 { font-size: 1.3rem; }
-      .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.03rem; margin: 0.5rem auto; padding-bottom: 90px; }
+      .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.03rem; margin: 0.5rem auto; padding-bottom: 60px; }
       .theme-b button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-b iframe { height: 350px; }
       .theme-b .frame-logo {
@@ -347,7 +347,7 @@
       }
     }
 
-    /* --- Toolbar: crisp, opaque, professioneel --- */
+    /* --- Toolbar: compact, antraciet, gelijk voor beide stijlen --- */
     .bottom-toolbar {
       position: fixed;
       bottom: 0;
@@ -355,15 +355,16 @@
       width: 100vw;
       display: flex;
       justify-content: center;
-      gap: 5rem;
-      padding: 0.7rem 0 0.5rem 0;
+      gap: 2.2rem;
+      padding: 0.18rem 0 0.18rem 0;
       z-index: 2000;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(8px);
-      border-top: 1.5px solid #e0e0e0;
+      background: #23262b; /* antraciet, opaak */
+      border-top: 2px solid #000; /* zwarte lijn boven */
       box-shadow: 0 -2px 16px 0 #0002;
       pointer-events: none;
       transition: background 0.2s;
+      min-height: 44px;
+      align-items: center;
     }
     .bottom-toolbar button {
       pointer-events: auto;
@@ -377,14 +378,16 @@
       align-items: center;
       justify-content: center;
       transition: filter 0.2s;
+      min-width: 38px;
+      min-height: 38px;
     }
     .bottom-toolbar button:active {
       filter: brightness(0.92);
     }
     .home-btn .home-icon {
       display: block;
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -404,18 +407,18 @@
       filter: brightness(0.95) drop-shadow(0 2px 6px #0001);
     }
     .theme-switch-btn {
-      min-width: 64px;
-      min-height: 34px;
-      padding: 0 20px;
-      border-radius: 18px;
-      border: 2px solid;
-      background: #fff;
+      min-width: 38px;
+      min-height: 38px;
+      padding: 0 10px;
+      border-radius: 14px;
+      border: 2px solid #b8d8d8;
+      background: #23262b;
       font-family: 'Quicksand', Arial, sans-serif;
-      font-size: 1.08rem;
+      font-size: 0.98rem;
       font-weight: 700;
       letter-spacing: 0.01em;
       text-align: center;
-      box-shadow: 0 2px 8px #0001;
+      box-shadow: none;
       transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
       cursor: pointer;
       display: flex;
@@ -426,10 +429,10 @@
       border-color: #b8d8d8;
     }
     .theme-switch-btn:hover {
-      background: #f6faff;
+      background: #2d3138;
       color: #ffa500;
       border-color: #ffa500;
-      box-shadow: 0 4px 16px #b8d8d822;
+      box-shadow: 0 4px 16px #0002;
     }
     body.theme-b .theme-switch-btn {
       color: #ffa500;
@@ -438,15 +441,16 @@
     body.theme-b .theme-switch-btn:hover {
       color: #b8d8d8;
       border-color: #b8d8d8;
-      background: #fdf6ef;
+      background: #23262b;
     }
     @media (max-width: 600px) {
       .bottom-toolbar {
-        gap: 2.5rem;
-        padding: 0.2rem 0 0.15rem 0;
+        gap: 1.2rem;
+        padding: 0.08rem 0 0.08rem 0;
+        min-height: 36px;
       }
-      .home-btn .home-icon { width: 28px; height: 28px; }
-      .theme-switch-btn { min-width: 48px; min-height: 28px; font-size: 0.98rem; padding: 0 10px; }
+      .home-btn .home-icon { width: 20px; height: 20px; }
+      .theme-switch-btn { min-width: 28px; min-height: 28px; font-size: 0.85rem; padding: 0 6px; }
     }
   </style>
 </head>
