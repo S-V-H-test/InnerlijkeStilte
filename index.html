@@ -9,6 +9,7 @@
   <title>Innerlijke Stilte Oefening</title>
   <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap" rel="stylesheet">
   <style>
+    /* Fade in/out animatie voor stappen */
     .step, .intro {
       opacity: 0;
       transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
@@ -19,10 +20,12 @@
       pointer-events: auto;
       transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
     }
+
     html, body {
       max-width: 100vw;
       overflow-x: hidden;
     }
+
     .intro, .step {
       box-sizing: border-box;
       max-width: 100vw;
@@ -31,6 +34,8 @@
       padding-top: 56px;
       scroll-margin-bottom: 120px;
     }
+
+    /* Logo rechtsboven in elk tekstvak */
     .frame-logo {
       position: absolute;
       top: 8px;
@@ -51,6 +56,8 @@
         right: 4px;
       }
     }
+
+    /* Accentknoppen */
     .accent-btn, .accent-btn:focus {
       background: linear-gradient(90deg, #ffb84d 0%, #ffd580 100%) !important;
       color: #23262b !important;
@@ -69,9 +76,13 @@
       border-color: #ffd580 !important;
       box-shadow: 0 4px 24px #ffb84d55;
     }
+
+    /* Universele knopstijl voor ALLE knoppen */
     button, .accent-btn, .theme-switch-btn, .home-btn {
       border-radius: 18px !important;
     }
+
+    /* Scrollbar/progress-indicator in de intro */
     .intro-scrollbar {
       position: absolute;
       left: 0; right: 0; bottom: 0;
@@ -91,6 +102,8 @@
       border-radius: 3px;
       transition: width 0.2s cubic-bezier(.4,0,.2,1);
     }
+
+    /* --- STIJL A (standaard) --- */
     body.theme-a, body:not(.theme-b) {
       background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
       background-size: cover;
@@ -252,6 +265,8 @@
       .theme-a button, body:not(.theme-b) button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-a iframe, body:not(.theme-b) iframe { height: 500px; }
     }
+
+    /* --- STIJL B (zacht, speels, pastel) --- */
     body.theme-b {
       background: #fdf6ef url('Media/stilte-bubbel.jpg') no-repeat center center fixed;
       background-size: cover;
@@ -389,15 +404,17 @@
       .theme-b button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-b iframe { height: 500px; }
     }
+
+    /* --- UNIVERSELE TOOLBAR: altijd wit, gecentreerd, knoppen goed uitgelijnd --- */
     .bottom-toolbar {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100vw;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      gap: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
       padding: 0.18rem 0 0.18rem 0;
       z-index: 2000;
       background: #23262b !important;
@@ -405,79 +422,75 @@
       box-shadow: 0 -2px 16px 0 #0002 !important;
       min-height: 56px !important;
       height: 56px !important;
-      flex-direction: row !important;
+      flex-direction: row;
     }
     .bottom-toolbar > * {
       order: 0;
     }
-    #theme-switch { order: 1; }
-    #reset-button { order: 2; }
-    .bottom-toolbar button {
-      pointer-events: auto;
-      background: linear-gradient(90deg, #ffe0b2 0%, #ffb84d 100%) !important;
-      color: #3a3a3a !important;
-      border: 2.5px solid #ffb84d !important;
-      box-shadow: 0 2px 8px #ffb84d33 !important;
+    .bottom-toolbar .toolbar-btn {
+      background: #fff !important;
+      color: #23262b !important;
+      border: 2.5px solid #fff !important;
+      box-shadow: 0 2px 8px #0001 !important;
       outline: none;
       margin: 0;
       padding: 0;
-      width: 64px;
-      height: 48px;
-      min-width: 64px;
-      min-height: 48px;
+      width: 74px;
+      height: 52px;
+      min-width: 74px;
+      min-height: 52px;
       border-radius: 18px !important;
       font-family: 'Quicksand', Arial, sans-serif;
       font-size: 1.13rem;
       font-weight: 700;
       transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
       cursor: pointer;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       vertical-align: middle;
       line-height: 1;
       position: relative;
     }
-    .bottom-toolbar button:active,
-    .bottom-toolbar button:hover {
-      background: linear-gradient(90deg, #ffb84d 0%, #ffe0b2 100%) !important;
-      color: #fff !important;
-      border-color: #ffd580 !important;
-      box-shadow: 0 4px 16px #ffb84d55 !important;
+    .bottom-toolbar .toolbar-btn:active,
+    .bottom-toolbar .toolbar-btn:hover {
+      background: #f7e7c5 !important;
+      color: #23262b !important;
+      border-color: #ffe0b2 !important;
+      box-shadow: 0 4px 16px #ffb84d33 !important;
     }
     .home-btn .home-icon {
       display: block;
       margin: auto;
       align-self: center;
       justify-self: center;
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
-      stroke: #3a3a3a !important;
+      stroke: #23262b !important;
       fill: none !important;
       transition: stroke 0.2s, fill 0.2s;
       background: none;
     }
     .home-btn:active .home-icon,
     .home-btn:hover .home-icon {
-      stroke: #fff !important;
+      stroke: #ffb84d !important;
       fill: none !important;
       filter: brightness(1.1) drop-shadow(0 2px 6px #fff8);
     }
     @media (max-width: 600px) {
       .bottom-toolbar {
-        gap: 1.2rem;
-        padding: 0.08rem 0 0.08rem 0;
+        gap: 0.7rem;
         min-height: 40px !important;
         height: 40px !important;
       }
-      .bottom-toolbar button {
-        width: 44px;
-        height: 36px;
-        min-width: 44px;
-        min-height: 36px;
+      .bottom-toolbar .toolbar-btn {
+        width: 48px;
+        height: 34px;
+        min-width: 48px;
+        min-height: 34px;
         font-size: 0.98rem;
       }
       .home-btn .home-icon { width: 22px; height: 22px; }
@@ -488,6 +501,7 @@
   <div class="overlay"></div>
   <h1>Innerlijke Stilte Oefening</h1>
 
+  <!-- Introductie zichtbaar bij laden -->
   <div class="intro visible" id="intro" aria-live="polite">
     <p>
       Dit is een kleine makkelijke oefening van drie stappen.<br>
@@ -516,6 +530,7 @@
     <div class="intro-scrollbar"><div class="bar" id="intro-scrollbar-bar"></div></div>
   </div>
 
+  <!-- Stap 1 -->
   <div id="step-1" class="step" aria-live="polite">
     <h2 tabindex="-1">Stap 1</h2>
     <p>Nu volgt de uitleg.<br>
@@ -530,6 +545,7 @@
     <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
+  <!-- Stap 2 -->
   <div id="step-2" class="step" aria-live="polite">
     <h2 tabindex="-1">Stap 2</h2>
     <p>In dit deel maak je kennis met de methode.<br>
@@ -547,6 +563,7 @@
     <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
+  <!-- Stap 3 -->
   <div id="step-3" class="step" aria-live="polite">
     <h2 tabindex="-1">Stap 3</h2>
     <p>In de vorige stap maakte je kennis met de methode.<br>
@@ -565,6 +582,7 @@
     <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
+  <!-- Evaluatie -->
   <div id="evaluation-step" class="step" aria-live="polite">
     <h2 tabindex="-1">Evaluatie</h2>
     <p id="text-block-4">
@@ -584,9 +602,10 @@
     <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
+  <!-- Universele toolbar onderaan, altijd zichtbaar, altijd wit, gecentreerd -->
   <div class="bottom-toolbar">
-    <button id="theme-switch" class="theme-switch-btn" title="Wissel stijl" aria-label="Wissel stijl">Stijl</button>
-    <button id="reset-button" class="home-btn" title="Home" aria-label="Home">
+    <button id="theme-switch" class="toolbar-btn" title="Wissel stijl" aria-label="Wissel stijl">Stijl</button>
+    <button id="reset-button" class="toolbar-btn home-btn" title="Home" aria-label="Home">
       <svg class="home-icon" viewBox="0 0 32 32" fill="none">
         <path d="M6 16L16 8L26 16" />
         <rect x="10" y="16" width="12" height="10" rx="2" />
@@ -595,6 +614,7 @@
   </div>
 
 <script>
+  // --- THEMA WISSELEN OP BASIS VAN URL EN KNOP ---
   function setTheme(theme) {
     document.body.classList.remove('theme-a', 'theme-b');
     const themeSwitch = document.getElementById('theme-switch');
@@ -610,6 +630,7 @@
       themeSwitch.setAttribute('title', 'Wissel naar stijl B');
     }
   }
+
   function getThemeFromUrl() {
     const params = new URLSearchParams(window.location.search);
     return params.get('theme');
@@ -620,21 +641,36 @@
   function setThemeInStorage(theme) {
     sessionStorage.setItem('theme', theme);
   }
+
+  // Init theme: standaard B
   let theme = getThemeFromUrl() || getThemeFromStorage() || 'B';
   setTheme(theme);
+
+  // Theme wissel knop
   document.getElementById('theme-switch').onclick = function() {
     theme = (theme === 'A') ? 'B' : 'A';
     setTheme(theme);
     setThemeInStorage(theme);
   };
+
+  // Reset knop (home)
+  document.getElementById('reset-button').onclick = function() {
+    localStorage.clear();
+    location.reload();
+  };
+
   document.addEventListener('DOMContentLoaded', function() {
     let step3Count = parseInt(localStorage.getItem('step3Count')) || 0;
     const countDisplay = document.getElementById('count-3');
+
     function updateCount() {
       countDisplay.textContent = 'Herhalingen: ' + step3Count;
     }
+
+    // Fade-in/fade-out bij stapwissel + a11y focus
     let currentStep = null;
     function showStep(id) {
+      // Fade out huidige
       if (currentStep) {
         const el = document.getElementById(currentStep);
         if (el) el.classList.remove('visible');
@@ -643,19 +679,25 @@
         document.getElementById('intro').style.display = 'none';
         document.querySelectorAll('.step').forEach(el => el.style.display = 'none');
         document.getElementById(id).style.display = 'block';
+        // Fade in nieuwe
         setTimeout(function() {
           document.getElementById(id).classList.add('visible');
+          // a11y: focus op eerste heading
           const heading = document.getElementById(id).querySelector('h2, h1');
           if (heading) heading.focus();
         }, 10);
         localStorage.setItem('currentStep', id);
+
+        // Scroll het blok zó dat het hele blok boven de toolbar uitkomt
         setTimeout(function() {
           const el = document.getElementById(id);
           if (el) {
             el.scrollIntoView({behavior: 'smooth', block: 'start'});
+            // Extra scroll zodat onderkant niet achter toolbar zit
             const toolbar = document.querySelector('.bottom-toolbar');
             if (toolbar) {
               const toolbarHeight = toolbar.offsetHeight || 60;
+              // Nog iets verder scrollen bij intro
               const extra = id === 'intro' ? 120 : 60;
               window.scrollBy({top: -toolbarHeight - extra, left: 0, behavior: 'smooth'});
             }
@@ -664,13 +706,19 @@
         currentStep = id;
       }, 200);
     }
+
+    // Init: toon alleen intro
     document.getElementById('intro').style.display = 'block';
     document.getElementById('intro').classList.add('visible');
     currentStep = 'intro';
+
+    // Verder-knop toont stap-1 of opgeslagen stap
     document.getElementById('continue-intro').onclick = function() {
       const saved = localStorage.getItem('currentStep');
       showStep(saved && ['step-1','step-2','step-3','evaluation-step'].includes(saved) ? saved : 'step-1');
     };
+
+    // Intro scrollbar/progress-indicator
     const intro = document.getElementById('intro');
     const introScrollbarBar = document.getElementById('intro-scrollbar-bar');
     intro.addEventListener('scroll', function() {
@@ -682,11 +730,14 @@
     setTimeout(() => {
       intro.dispatchEvent(new Event('scroll'));
     }, 100);
+
+    // AUDIO BUTTON LOGIC (PAUSE/RESUME/REPLAY)
     function setupAudioControls(audioId, btnId, nextId, defaultText) {
       const audio = document.getElementById(audioId);
       const btn = document.getElementById(btnId);
       const progressBar = btn.querySelector('.progress-bar');
       const next = nextId ? document.getElementById(nextId) : null;
+
       function setBtnText(state) {
         btn.querySelector('span').textContent = (
           state === 'default' ? defaultText :
@@ -694,8 +745,10 @@
           state === 'paused' ? 'Verder' : 'Opnieuw'
         );
       }
+
       setBtnText('default');
       if (next) next.disabled = true;
+
       function updateProgress() {
         if (audio.duration) {
           const percent = (audio.currentTime / audio.duration) * 100;
@@ -707,6 +760,7 @@
           requestAnimationFrame(updateProgress);
         }
       }
+
       btn.onclick = function() {
         const btnText = btn.querySelector('span').textContent.trim();
         if (audio.ended || audio.currentTime === audio.duration || btnText === 'Opnieuw') {
@@ -732,6 +786,7 @@
           return;
         }
       };
+
       audio.onplay = function() {
         setBtnText('playing');
         if (next) next.disabled = true;
@@ -748,6 +803,7 @@
         progressBar.style.width = '100%';
         if (next) next.disabled = false;
       };
+
       function resetBtn() {
         setBtnText('default');
         if (next) next.disabled = true;
@@ -756,17 +812,25 @@
       }
       return resetBtn;
     }
+
+    // Stap 1
     const resetBtn1 = setupAudioControls('audio-1', 'play-1', 'next-1', 'Uitleg');
     document.getElementById('next-1').onclick = function() { 
       resetBtn1();
       showStep('step-2'); 
     };
+
+    // Stap 2
     const resetBtn2 = setupAudioControls('audio-2', 'play-2', 'next-2', 'Methode');
     document.getElementById('next-2').onclick = function() { 
       resetBtn2();
       showStep('step-3'); 
     };
+
+    // Stap 3 (zonder next-knop)
     setupAudioControls('audio-3', 'play-3', null, 'Oefening');
+
+    // Stap 3 extra logica voor herhalingen
     const audio3 = document.getElementById('audio-3');
     const btn3 = document.getElementById('play-3');
     function setBtn3Text(state) {
@@ -779,6 +843,7 @@
     setBtn3Text('default');
     btn3.disabled = false;
     updateCount();
+
     audio3.onended = function() {
       step3Count++;
       localStorage.setItem('step3Count', step3Count);
@@ -788,13 +853,11 @@
       btn3.querySelector('.progress-bar').style.width = '100%';
       if (step3Count >= 3) showStep('evaluation-step'); else showStep('step-3');
     };
+
+    // Evaluation fallback hides form on click
     document.getElementById('fallback-link').onclick = function() {
       localStorage.setItem('evaluated','true');
       showStep('step-3');
-    };
-    document.getElementById('reset-button').onclick = function() {
-      localStorage.clear();
-      location.reload();
     };
   });
 </script>
