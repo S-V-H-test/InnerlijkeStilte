@@ -21,81 +21,6 @@
       transition: opacity 0.35s cubic-bezier(.4,0,.2,1);
     }
 
-    /* UNIVERSELE TOOLBAR, ALTIJD GELIJK */
-    .bottom-toolbar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 0.18rem 0 0.18rem 0;
-      z-index: 2000;
-      background: #23262b;
-      border-top: 2px solid #111;
-      box-shadow: 0 -2px 16px 0 #0002;
-      pointer-events: none;
-      min-height: 48px;
-      align-items: center;
-    }
-    .bottom-toolbar button {
-      pointer-events: auto;
-      background: #23262b !important;
-      border: 2px solid #fff !important;
-      box-shadow: none !important;
-      outline: none;
-      margin: 0;
-      padding: 0 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 38px;
-      min-height: 38px;
-      border-radius: 14px;
-      font-family: 'Quicksand', Arial, sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: #fff !important;
-      transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
-      cursor: pointer;
-      gap: 0.5rem;
-    }
-    .bottom-toolbar button:active,
-    .bottom-toolbar button:hover {
-      background: #353942 !important;
-      color: #fff !important;
-      border-color: #fff !important;
-      box-shadow: 0 4px 16px #0003;
-    }
-    .home-btn .home-icon {
-      display: block;
-      width: 28px;
-      height: 28px;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke: #fff !important;
-      fill: none !important;
-      transition: stroke 0.2s, fill 0.2s;
-      background: none;
-    }
-    .home-btn:active .home-icon,
-    .home-btn:hover .home-icon {
-      stroke: #fff !important;
-      fill: none !important;
-      filter: brightness(1.1) drop-shadow(0 2px 6px #0002);
-    }
-    @media (max-width: 600px) {
-      .bottom-toolbar {
-        gap: 1.2rem;
-        padding: 0.08rem 0 0.08rem 0;
-        min-height: 36px;
-      }
-      .bottom-toolbar button { min-width: 28px; min-height: 28px; font-size: 0.95rem; padding: 0 8px; }
-      .home-btn .home-icon { width: 20px; height: 20px; }
-    }
-
     html, body {
       max-width: 100vw;
       overflow-x: hidden;
@@ -134,22 +59,27 @@
 
     /* Accentknoppen */
     .accent-btn, .accent-btn:focus {
-      background: linear-gradient(90deg, #ffa500 0%, #ffd580 100%) !important;
+      background: linear-gradient(90deg, #ffb84d 0%, #ffd580 100%) !important;
       color: #23262b !important;
-      border: 2.5px solid #ffa500 !important;
+      border: 2.5px solid #ffb84d !important;
       font-size: 1.18rem !important;
       font-weight: 800 !important;
-      box-shadow: 0 2px 12px #ffa50033;
+      box-shadow: 0 2px 12px #ffb84d33;
       border-radius: 18px !important;
       outline: 2px solid #fff3 !important;
       outline-offset: 2px;
       transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
     }
     .accent-btn:hover, .accent-btn:active {
-      background: linear-gradient(90deg, #ffd580 0%, #ffa500 100%) !important;
+      background: linear-gradient(90deg, #ffd580 0%, #ffb84d 100%) !important;
       color: #23262b !important;
       border-color: #ffd580 !important;
-      box-shadow: 0 4px 24px #ffa50055;
+      box-shadow: 0 4px 24px #ffb84d55;
+    }
+
+    /* Universele knopstijl voor ALLE knoppen */
+    button, .accent-btn, .theme-switch-btn, .home-btn {
+      border-radius: 18px !important;
     }
 
     /* Scrollbar/progress-indicator in de intro */
@@ -167,7 +97,7 @@
     }
     .intro-scrollbar .bar {
       height: 100%;
-      background: linear-gradient(90deg, #ffa500 0%, #ffd580 100%);
+      background: linear-gradient(90deg, #ffb84d 0%, #ffd580 100%);
       width: 0%;
       border-radius: 3px;
       transition: width 0.2s cubic-bezier(.4,0,.2,1);
@@ -201,18 +131,19 @@
       margin-top: 1rem;
       margin-bottom: 1rem;
       font-size: 1.75rem;
-      color: #ffa500;
+      color: #ffb84d;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
-    .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step {
+    .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step,
+    .theme-b .intro, .theme-b .step {
       background-color: rgba(44,44,44,0.8);
       color: #fff;
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: 18px !important;
       font-size: 1.05rem;
       margin: 1rem auto;
-      border: 2px solid #ffa500;
-      max-width: 900px; /* <-- breder gemaakt */
+      border: 3px solid #ffd580 !important; /* zachter oranje */
+      max-width: 1200px;
       line-height: 1.4;
       backdrop-filter: blur(5px);
       text-align: left;
@@ -222,7 +153,7 @@
     .theme-a .step, body:not(.theme-b) .step { display: none; }
     .theme-a h2, body:not(.theme-b) h2 {
       margin-bottom: 0.75rem;
-      color: #ffa500;
+      color: #ffb84d;
       font-size: 1.25rem;
     }
     .theme-a p, body:not(.theme-b) p {
@@ -244,12 +175,12 @@
     }
     .theme-a button, body:not(.theme-b) button {
       background-color: rgba(31,31,31,0.8);
-      color: #ffa500;
-      border: 2px solid #ffa500;
+      color: #ffb84d;
+      border: 2px solid #ffb84d;
       padding: 0.8rem 1.5rem;
       margin: 1rem 0 0.5rem 0;
       cursor: pointer;
-      border-radius: 4px;
+      border-radius: 18px !important;
       font-size: 1.1rem;
       transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       backdrop-filter: blur(5px);
@@ -259,7 +190,7 @@
       overflow: hidden;
     }
     .theme-a button:hover:not(:disabled), body:not(.theme-b) button:hover:not(:disabled) {
-      background-color: #ffa500;
+      background-color: #ffb84d;
       color: #1c2733;
     }
     .theme-a button:disabled, body:not(.theme-b) button:disabled {
@@ -270,20 +201,21 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 0%;
-      background: linear-gradient(90deg, #ffa500 0%, #ffd580 100%);
+      background: linear-gradient(90deg, #ffb84d 0%, #ffd580 100%);
       opacity: 0.4;
       z-index: 0;
       transition: width 0.1s linear;
       pointer-events: none;
+      border-radius: 18px !important;
     }
     .theme-a button.audio-progress span, body:not(.theme-b) button.audio-progress span {
       position: relative;
       z-index: 1;
     }
     .theme-a button[id^="play-"], body:not(.theme-b) button[id^="play-"] {
-      background-color: #ffa500;
+      background-color: #ffb84d;
       color: #222;
-      border: 2px solid #ffa500;
+      border: 2px solid #ffb84d;
     }
     .theme-a button[id^="play-"]:hover, body:not(.theme-b) button[id^="play-"]:hover {
       background-color: #fff3cd;
@@ -299,8 +231,9 @@
       width: 100%;
       height: 900px;
       background-color: rgba(255,255,255,0.9);
-      border-radius: 8px;
+      border-radius: 18px !important;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      border: 3px solid #ffd580 !important; /* zachter oranje */
     }
     .theme-a .fallback, body:not(.theme-b) .fallback {
       margin-top: 1rem;
@@ -308,7 +241,7 @@
       color: #ccc;
     }
     .theme-a .fallback a, body:not(.theme-b) .fallback a {
-      color: #ffa500;
+      color: #ffb84d;
       text-decoration: none;
     }
     .theme-a .fallback a:hover, body:not(.theme-b) .fallback a:hover {
@@ -327,7 +260,8 @@
         overscroll-behavior: contain;
       }
       .theme-a h1, body:not(.theme-b) h1 { font-size: 1.5rem; }
-      .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; padding-bottom: 60px; }
+      .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step,
+      .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; padding-bottom: 60px; }
       .theme-a button, body:not(.theme-b) button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-a iframe, body:not(.theme-b) iframe { height: 500px; }
     }
@@ -357,27 +291,9 @@
       text-align: center;
       font-weight: 600;
     }
-    .theme-b .intro, .theme-b .step {
-      background: rgba(255,255,255,0.85);
-      color: #3a3a3a;
-      padding: 1.3rem 1.2rem 1.8rem 1.2rem;
-      border-radius: 32px;
-      font-size: 1.08rem;
-      margin: 1.2rem auto;
-      border: 2.5px solid #b8d8d8;
-      max-width: 600px;
-      line-height: 1.55;
-      box-shadow: 0 4px 24px 0 #b8d8d822;
-      backdrop-filter: blur(2px);
-      text-align: left;
-      position: relative;
-      transition: box-shadow 0.2s;
-      padding-bottom: 60px;
-    }
-    .theme-b .step { display: none; }
     .theme-b h2 {
       margin-bottom: 0.8rem;
-      color: #f6b36b;
+      color: #ffb84d;
       font-size: 1.25rem;
       font-family: 'Quicksand', Arial, sans-serif;
       letter-spacing: 0.03em;
@@ -401,17 +317,17 @@
       text-align: left;
     }
     .theme-b button {
-      background: linear-gradient(90deg, #f6b36b 0%, #b8d8d8 100%);
+      background: linear-gradient(90deg, #ffe0b2 0%, #ffb84d 100%);
       color: #3a3a3a;
-      border: 2px solid #b8d8d8;
+      border: 2px solid #ffb84d;
       padding: 1rem 1.7rem;
       margin: 1.2rem 0 0.7rem 0;
       cursor: pointer;
-      border-radius: 32px;
+      border-radius: 18px !important;
       font-size: 1.15rem;
       font-family: 'Quicksand', Arial, sans-serif;
       font-weight: 600;
-      box-shadow: 0 2px 8px #b8d8d833;
+      box-shadow: 0 2px 8px #ffb84d33;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       width: auto;
       display: inline-block;
@@ -420,9 +336,9 @@
       outline: none;
     }
     .theme-b button:hover:not(:disabled) {
-      background: linear-gradient(90deg, #b8d8d8 0%, #f6b36b 100%);
+      background: linear-gradient(90deg, #ffb84d 0%, #ffe0b2 100%);
       color: #fff;
-      box-shadow: 0 4px 16px #b8d8d855;
+      box-shadow: 0 4px 16px #ffb84d55;
     }
     .theme-b button:disabled {
       opacity: 0.5;
@@ -432,46 +348,47 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 0%;
-      background: linear-gradient(90deg, #f6b36b 0%, #b8d8d8 100%);
+      background: linear-gradient(90deg, #ffb84d 0%, #ffe0b2 100%);
       opacity: 0.25;
       z-index: 0;
       transition: width 0.1s linear;
       pointer-events: none;
-      border-radius: 32px;
+      border-radius: 18px !important;
     }
     .theme-b button.audio-progress span {
       position: relative;
       z-index: 1;
     }
     .theme-b button[id^="play-"] {
-      background: linear-gradient(90deg, #b8d8d8 0%, #f6b36b 100%);
+      background: linear-gradient(90deg, #ffe0b2 0%, #ffb84d 100%);
       color: #3a3a3a;
-      border: 2px solid #f6b36b;
+      border: 2px solid #ffb84d;
     }
     .theme-b button[id^="play-"]:hover {
-      background: linear-gradient(90deg, #f6b36b 0%, #b8d8d8 100%);
+      background: linear-gradient(90deg, #ffb84d 0%, #ffe0b2 100%);
       color: #fff;
     }
     .theme-b #count-3 {
       margin-left: 0.7rem;
       font-size: 1rem;
-      color: #f6b36b;
+      color: #ffb84d;
     }
     .theme-b iframe {
       border: none;
       width: 100%;
       height: 900px;
       background-color: rgba(255,255,255,0.95);
-      border-radius: 18px;
-      box-shadow: 0 4px 12px #b8d8d833;
+      border-radius: 18px !important;
+      box-shadow: 0 4px 12px #ffb84d33;
+      border: 3px solid #ffd580 !important; /* zachter oranje */
     }
     .theme-b .fallback {
       margin-top: 1rem;
       font-size: 0.98rem;
-      color: #b8d8d8;
+      color: #ffb84d;
     }
     .theme-b .fallback a {
-      color: #f6b36b;
+      color: #ffb84d;
       text-decoration: underline;
     }
     .theme-b .fallback a:hover {
@@ -479,13 +396,110 @@
       color: #3a3a3a;
     }
     .theme-b .frame-logo {
-      box-shadow: 0 16px 64px 0 #b8d8d8cc, 0 6px 24px 0 #fff7;
+      box-shadow: 0 16px 64px 0 #ffb84dcc, 0 6px 24px 0 #fff7;
     }
     @media (max-width: 600px) {
       .theme-b h1 { font-size: 1.3rem; }
       .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.03rem; margin: 0.5rem auto; padding-bottom: 60px; }
       .theme-b button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-b iframe { height: 500px; }
+    }
+
+    /* --- TOOLBAR: UNIVERSEEL, NIET DOOR THEMA OVERSCHREVEN --- */
+    .bottom-toolbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 2.5rem;
+      padding: 0.18rem 0 0.18rem 0;
+      z-index: 2000;
+      background: #23262b !important;
+      border-top: 2px solid #111 !important;
+      box-shadow: 0 -2px 16px 0 #0002 !important;
+      min-height: 56px !important;
+      height: 56px !important;
+      flex-direction: row !important;
+    }
+    .bottom-toolbar > * {
+      order: 0;
+    }
+    #theme-switch { order: 1; }
+    #reset-button { order: 2; }
+    .bottom-toolbar button {
+      /* Stijl B: pastel, breed, afgerond, gradient, Quicksand, gecentreerd */
+      pointer-events: auto;
+      background: linear-gradient(90deg, #ffe0b2 0%, #ffb84d 100%) !important;
+      color: #3a3a3a !important;
+      border: 2.5px solid #ffb84d !important;
+      box-shadow: 0 2px 8px #ffb84d33 !important;
+      outline: none;
+      margin: 0;
+      padding: 0;
+      width: 64px;
+      height: 48px;
+      min-width: 64px;
+      min-height: 48px;
+      border-radius: 18px !important;
+      font-family: 'Quicksand', Arial, sans-serif;
+      font-size: 1.13rem;
+      font-weight: 700;
+      transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+      cursor: pointer;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      vertical-align: middle;
+      line-height: 1;
+      position: relative;
+    }
+    .bottom-toolbar button:active,
+    .bottom-toolbar button:hover {
+      background: linear-gradient(90deg, #ffb84d 0%, #ffe0b2 100%) !important;
+      color: #fff !important;
+      border-color: #ffd580 !important;
+      box-shadow: 0 4px 16px #ffb84d55 !important;
+    }
+    .home-btn .home-icon {
+      display: block;
+      margin: auto;
+      align-self: center;
+      justify-self: center;
+      width: 32px;
+      height: 32px;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: #3a3a3a !important;
+      fill: none !important;
+      transition: stroke 0.2s, fill 0.2s;
+      background: none;
+    }
+    /* Huisje altijd wit bij hover/active, in alle stijlen */
+    .home-btn:active .home-icon,
+    .home-btn:hover .home-icon {
+      stroke: #fff !important;
+      fill: none !important;
+      filter: brightness(1.1) drop-shadow(0 2px 6px #fff8);
+    }
+    @media (max-width: 600px) {
+      .bottom-toolbar {
+        gap: 1.2rem;
+        padding: 0.08rem 0 0.08rem 0;
+        min-height: 40px !important;
+        height: 40px !important;
+      }
+      .bottom-toolbar button {
+        width: 44px;
+        height: 36px;
+        min-width: 44px;
+        min-height: 36px;
+        font-size: 0.98rem;
+      }
+      .home-btn .home-icon { width: 22px; height: 22px; }
     }
   </style>
 </head>
