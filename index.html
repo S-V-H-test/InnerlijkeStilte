@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta property="og:image" content="https://s-v-h-test.github.io/InnerlijkeStilte//Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg" />
+  <meta property="og:image" content="https://s-v-h-test.github.io/InnerlijkeStilte//Media/stilte-bubbel.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://s-v-h-test.github.io/InnerlijkeStilte//Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg" />
+  <meta name="twitter:image" content="https://s-v-h-test.github.io/InnerlijkeStilte//Media/stilte-bubbel.jpg" />
   <title>Innerlijke Stilte Oefening</title>
   <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap" rel="stylesheet">
   <style>
@@ -113,20 +113,22 @@
     /* Logo rechtsboven in elk tekstvak */
     .frame-logo {
       position: absolute;
-      top: 12px;
-      right: 18px;
-      width: 48px;
-      height: 48px;
-      opacity: 0.85;
+      top: 8px;
+      right: 12px;
+      width: 72px;
+      height: 72px;
+      opacity: 0.92;
       pointer-events: none;
       z-index: 10;
+      border-radius: 50%;
+      box-shadow: 0 16px 64px 0 #000a, 0 6px 24px 0 #0005;
     }
     @media (max-width: 600px) {
       .frame-logo {
-        width: 32px;
-        height: 32px;
-        top: 8px;
-        right: 8px;
+        width: 48px;
+        height: 48px;
+        top: 4px;
+        right: 4px;
       }
     }
 
@@ -210,7 +212,7 @@
       font-size: 1.05rem;
       margin: 1rem auto;
       border: 2px solid #ffa500;
-      max-width: 600px;
+      max-width: 900px; /* <-- breder gemaakt */
       line-height: 1.4;
       backdrop-filter: blur(5px);
       text-align: left;
@@ -313,7 +315,7 @@
       text-decoration: underline;
     }
     .theme-a .frame-logo, body:not(.theme-b) .frame-logo {
-      /* wordt nu rechtsboven gepositioneerd */
+      box-shadow: 0 16px 64px 0 #000a, 0 6px 24px 0 #0005;
     }
     @media (max-width: 600px) {
       body.theme-a, body:not(.theme-b) {
@@ -477,50 +479,13 @@
       color: #3a3a3a;
     }
     .theme-b .frame-logo {
-      /* wordt nu rechtsboven gepositioneerd */
+      box-shadow: 0 16px 64px 0 #b8d8d8cc, 0 6px 24px 0 #fff7;
     }
     @media (max-width: 600px) {
       .theme-b h1 { font-size: 1.3rem; }
       .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.03rem; margin: 0.5rem auto; padding-bottom: 60px; }
       .theme-b button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-b iframe { height: 500px; }
-    }
-
-    /* Google Translate styling in toolbar */
-    #google_translate_element {
-      display: none;
-      position: absolute;
-      right: 120px;
-      bottom: 60px;
-      z-index: 3000;
-      background: #23262b;
-      border-radius: 14px;
-      padding: 8px 12px;
-      box-shadow: 0 4px 24px #0004;
-    }
-    #google_translate_element select {
-      background: #23262b;
-      color: #fff;
-      border-radius: 8px;
-      border: 1.5px solid #fff;
-      padding: 4px 8px;
-      font-size: 1rem;
-      font-family: 'Quicksand', Arial, sans-serif;
-      margin: 0;
-    }
-    #google_translate_element span {
-      color: #fff !important;
-    }
-    @media (max-width: 600px) {
-      #google_translate_element {
-        right: 16px;
-        bottom: 44px;
-        padding: 4px 6px;
-      }
-      #google_translate_element select {
-        font-size: 0.95rem;
-        padding: 2px 4px;
-      }
     }
   </style>
 </head>
@@ -553,7 +518,7 @@
       Als je helemaal opnieuw wil beginnen ga dan naar het "home" onderaan.<br>
     </p>
     <button id="continue-intro" class="accent-btn">Verder</button>
-    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
+    <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
     <div class="intro-scrollbar"><div class="bar" id="intro-scrollbar-bar"></div></div>
   </div>
 
@@ -569,7 +534,7 @@
     <audio id="audio-1" src="Media/BTN-1.mp3" preload="auto" type="audio/mpeg">
       Your browser does not support audio playback.
     </audio>
-    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
+    <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Stap 2 -->
@@ -587,7 +552,7 @@
     <audio id="audio-2" src="Media/BTN-2.mp3" preload="auto" type="audio/mpeg">
       Your browser does not support audio playback.
     </audio>
-    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
+    <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Stap 3 -->
@@ -606,7 +571,7 @@
     <audio id="audio-3" src="Media/BTN-3.mp3" preload="auto" type="audio/mpeg">
       Your browser does not support audio playback.
     </audio>
-    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
+    <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Evaluatie -->
@@ -626,15 +591,12 @@
       width="1000" height="1200" frameborder="0" marginheight="0" marginwidth="0">
       Laden…
     </iframe>
-    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
+    <img src="Media/Logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Toolbar onderaan -->
   <div class="bottom-toolbar">
     <button id="theme-switch" class="theme-switch-btn" title="Wissel stijl" aria-label="Wissel stijl">Stijl</button>
-    <button id="lang-switch" class="theme-switch-btn" title="Taal kiezen" aria-label="Taal kiezen" style="font-size:1.2rem;display:flex;align-items:center;gap:0.4em;">
-      <span style="font-size:1.3em;line-height:1;">🌐</span> Taal
-    </button>
     <button id="reset-button" class="home-btn" title="Home" aria-label="Home">
       <svg class="home-icon" viewBox="0 0 32 32" fill="none">
         <path d="M6 16L16 8L26 16" />
@@ -642,40 +604,6 @@
       </svg>
     </button>
   </div>
-
-  <!-- Google Translate Widget -->
-  <div id="google_translate_element"></div>
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'nl',
-        includedLanguages: 'nl,en,es,de',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-
-    // Toon/verberg het menu bij klikken op de knop
-    document.addEventListener('DOMContentLoaded', function() {
-      var langBtn = document.getElementById('lang-switch');
-      var el = document.getElementById('google_translate_element');
-      langBtn.onclick = function(e) {
-        e.stopPropagation();
-        el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
-        setTimeout(function() {
-          var select = el.querySelector('select');
-          if (select) select.focus();
-        }, 400);
-      };
-      // Klik buiten het menu sluit het menu
-      document.addEventListener('click', function(e) {
-        if (el.style.display === 'block' && !el.contains(e.target) && e.target !== langBtn) {
-          el.style.display = 'none';
-        }
-      });
-    });
-  </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
   // --- THEMA WISSELEN OP BASIS VAN URL EN KNOP ---
@@ -707,7 +635,7 @@
   }
 
   // Init theme
-  let theme = getThemeFromUrl() || getThemeFromStorage() || 'A';
+  let theme = getThemeFromUrl() || getThemeFromStorage() || 'B';
   setTheme(theme);
 
   // Theme wissel knop
