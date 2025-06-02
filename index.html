@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>Innerlijke Stilte Oefening</title>
-  <!-- Open Graph metadata -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://s-v-h-test.github.io/InnerlijkeStilte/" />
-  <meta property="og:title" content="Innerlijke Stilte Oefening" />
-  <meta property="og:description" content="Doe mee aan een korte, drie-stappen oefening begeleid door audio en deel je ervaring via een evaluatieformulier." />
-  <meta property="og:image" content="https://s-v-h-test.github.io/InnerlijkeStilte/Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg" />
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* --- STIJL A (standaard) --- */
+    body.theme-a, body:not(.theme-b) {
       background-image: url('Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg');
       background-size: cover;
       background-position: center;
@@ -28,7 +21,7 @@
       flex-direction: column;
       align-items: center;
     }
-    .overlay {
+    .theme-a .overlay, body:not(.theme-b) .overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -37,72 +30,103 @@
       background-color: rgba(0, 0, 0, 0.5);
       z-index: -1;
     }
-    h1 {
+    .theme-a h1, body:not(.theme-b) h1 {
       margin-top: 1rem;
       margin-bottom: 1rem;
       font-size: 1.75rem;
       color: #ffa500;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
-    .intro {
+    .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step {
       background-color: rgba(44,44,44,0.8);
       color: #fff;
       padding: 1rem;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       margin: 1rem auto;
       border: 2px solid #ffa500;
       max-width: 600px;
       line-height: 1.4;
       backdrop-filter: blur(5px);
+      text-align: left;
+      position: relative;
     }
-    .step {
-      background-color: rgba(34,46,60,0.8);
-      color: #eee;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 2px solid #ffa500;
-      max-width: 600px;
-      width: 90%;
-      margin-bottom: 2rem;
-      display: none;
-      backdrop-filter: blur(5px);
-    }
-    h2 {
+    .theme-a .step, body:not(.theme-b) .step { display: none; }
+    .theme-a h2, body:not(.theme-b) h2 {
       margin-bottom: 0.75rem;
       color: #ffa500;
       font-size: 1.25rem;
     }
-    p {
+    .theme-a p, body:not(.theme-b) p {
       margin-bottom: 1rem;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
     }
-    button {
+    .theme-a .intro-list, body:not(.theme-b) .intro-list {
+      text-align: left;
+      margin: 1.2rem 0 1.2rem 1.5rem;
+      padding-left: 1.2rem;
+      list-style: decimal inside;
+      max-width: 500px;
+    }
+    .theme-a .intro-list li, body:not(.theme-b) .intro-list li {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      text-align: left;
+    }
+    .theme-a button, body:not(.theme-b) button {
       background-color: rgba(31,31,31,0.8);
       color: #ffa500;
       border: 2px solid #ffa500;
-      padding: 0.5rem 1rem;
-      margin-top: 0.75rem;
+      padding: 0.8rem 1.5rem;
+      margin: 1rem 0 0.5rem 0;
       cursor: pointer;
       border-radius: 4px;
-      font-size: 0.95rem;
-      transition: background-color 0.2s, color 0.2s;
+      font-size: 1.1rem;
+      transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
       backdrop-filter: blur(5px);
+      width: auto;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
     }
-    button:hover:not(:disabled) {
+    .theme-a button:hover:not(:disabled), body:not(.theme-b) button:hover:not(:disabled) {
       background-color: #ffa500;
       color: #1c2733;
     }
-    button:disabled {
+    .theme-a button:disabled, body:not(.theme-b) button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
-    #count-3 {
+    .theme-a button.audio-progress .progress-bar, body:not(.theme-b) button.audio-progress .progress-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #ffa500 0%, #ffd580 100%);
+      opacity: 0.4;
+      z-index: 0;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+    .theme-a button.audio-progress span, body:not(.theme-b) button.audio-progress span {
+      position: relative;
+      z-index: 1;
+    }
+    .theme-a button[id^="play-"], body:not(.theme-b) button[id^="play-"] {
+      background-color: #ffa500;
+      color: #222;
+      border: 2px solid #ffa500;
+    }
+    .theme-a button[id^="play-"]:hover, body:not(.theme-b) button[id^="play-"]:hover {
+      background-color: #fff3cd;
+      color: #b22222;
+    }
+    .theme-a #count-3, body:not(.theme-b) #count-3 {
       margin-left: 0.5rem;
       font-size: 0.9rem;
       color: #ccc;
     }
-    iframe {
+    .theme-a iframe, body:not(.theme-b) iframe {
       border: none;
       width: 100%;
       height: 600px;
@@ -110,36 +134,30 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     }
-    .fallback {
+    .theme-a .fallback, body:not(.theme-b) .fallback {
       margin-top: 1rem;
       font-size: 0.9rem;
       color: #ccc;
     }
-    .fallback a {
+    .theme-a .fallback a, body:not(.theme-b) .fallback a {
       color: #ffa500;
       text-decoration: none;
     }
-    .fallback a:hover {
+    .theme-a .fallback a:hover, body:not(.theme-b) .fallback a:hover {
       text-decoration: underline;
     }
-    #reset-button {
-      position: fixed;
-      top: 1rem;
+    .theme-a .frame-logo, body:not(.theme-b) .frame-logo {
+      position: absolute;
       right: 1rem;
-      background-color: #b22222;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      z-index: 1000;
-      font-size: 0.9rem;
-      backdrop-filter: blur(5px);
-    }
-    #reset-button:hover {
-      background-color: #ff4500;
+      bottom: 1rem;
+      width: 60px;
+      height: 60px;
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 10;
     }
     @media (max-width: 600px) {
-      html, body {
+      body.theme-a, body:not(.theme-b) {
         min-height: 100vh;
         background-attachment: scroll;
         -webkit-touch-callout: none;
@@ -147,25 +165,292 @@
         user-select: none;
         overscroll-behavior: contain;
       }
-      h1 { font-size: 1.5rem; }
-      .intro, .step { width: 98%; font-size: 0.95rem; margin: 0.5rem auto; }
-      button { font-size: 1rem; padding: 0.7rem 1.2rem; }
-      iframe { height: 350px; }
-      #reset-button {
-        top: 0.5rem;
+      .theme-a h1, body:not(.theme-b) h1 { font-size: 1.5rem; }
+      .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; }
+      .theme-a button, body:not(.theme-b) button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
+      .theme-a iframe, body:not(.theme-b) iframe { height: 350px; }
+      .theme-a .frame-logo, body:not(.theme-b) .frame-logo {
+        width: 40px;
+        height: 40px;
         right: 0.5rem;
-        padding: 0.4rem 0.8rem;
-        font-size: 0.85rem;
+        bottom: 0.5rem;
       }
-      button { font-size: 0.9rem; padding: 0.4rem 0.8rem; }
-      iframe { height: 400px; }
+    }
+
+    /* --- STIJL B (zacht, speels, pastel) --- */
+    body.theme-b {
+      background: #fdf6ef url('Media/stilte-bubbel.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #3a3a3a;
+      font-family: 'Quicksand', Arial, sans-serif;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .theme-b .overlay { display: none; }
+    .theme-b h1 {
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+      font-size: 2rem;
+      color: #3a3a3a;
+      text-shadow: 0 2px 8px #fff8, 0 1px 0 #fff;
+      font-family: 'Quicksand', Arial, sans-serif;
+      letter-spacing: 0.04em;
+      text-align: center;
+      font-weight: 600;
+    }
+    .theme-b .intro, .theme-b .step {
+      background: rgba(255,255,255,0.85);
+      color: #3a3a3a;
+      padding: 1.3rem 1.2rem 1.8rem 1.2rem;
+      border-radius: 32px;
+      font-size: 1.08rem;
+      margin: 1.2rem auto;
+      border: 2.5px solid #b8d8d8;
+      max-width: 600px;
+      line-height: 1.55;
+      box-shadow: 0 4px 24px 0 #b8d8d822;
+      backdrop-filter: blur(2px);
+      text-align: left;
+      position: relative;
+      transition: box-shadow 0.2s;
+    }
+    .theme-b .step { display: none; }
+    .theme-b h2 {
+      margin-bottom: 0.8rem;
+      color: #f6b36b;
+      font-size: 1.25rem;
+      font-family: 'Quicksand', Arial, sans-serif;
+      letter-spacing: 0.03em;
+      font-weight: 600;
+    }
+    .theme-b p {
+      margin-bottom: 1rem;
+      font-size: 1.08rem;
+    }
+    .theme-b .intro-list {
+      text-align: left;
+      margin: 1.2rem 0 1.2rem 1.5rem;
+      padding-left: 1.2rem;
+      list-style: decimal inside;
+      max-width: 500px;
+    }
+    .theme-b .intro-list li {
+      margin-bottom: 0.5rem;
+      font-size: 1.08rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+    .theme-b button {
+      background: linear-gradient(90deg, #f6b36b 0%, #b8d8d8 100%);
+      color: #3a3a3a;
+      border: 2px solid #b8d8d8;
+      padding: 1rem 1.7rem;
+      margin: 1.2rem 0 0.7rem 0;
+      cursor: pointer;
+      border-radius: 32px;
+      font-size: 1.15rem;
+      font-family: 'Quicksand', Arial, sans-serif;
+      font-weight: 600;
+      box-shadow: 0 2px 8px #b8d8d833;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      width: auto;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+    }
+    .theme-b button:hover:not(:disabled) {
+      background: linear-gradient(90deg, #b8d8d8 0%, #f6b36b 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px #b8d8d855;
+    }
+    .theme-b button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .theme-b button.audio-progress .progress-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #f6b36b 0%, #b8d8d8 100%);
+      opacity: 0.25;
+      z-index: 0;
+      transition: width 0.1s linear;
+      pointer-events: none;
+      border-radius: 32px;
+    }
+    .theme-b button.audio-progress span {
+      position: relative;
+      z-index: 1;
+    }
+    .theme-b button[id^="play-"] {
+      background: linear-gradient(90deg, #b8d8d8 0%, #f6b36b 100%);
+      color: #3a3a3a;
+      border: 2px solid #f6b36b;
+    }
+    .theme-b button[id^="play-"]:hover {
+      background: linear-gradient(90deg, #f6b36b 0%, #b8d8d8 100%);
+      color: #fff;
+    }
+    .theme-b #count-3 {
+      margin-left: 0.7rem;
+      font-size: 1rem;
+      color: #f6b36b;
+    }
+    .theme-b iframe {
+      border: none;
+      width: 100%;
+      height: 600px;
+      background-color: rgba(255,255,255,0.95);
+      border-radius: 18px;
+      box-shadow: 0 4px 12px #b8d8d833;
+    }
+    .theme-b .fallback {
+      margin-top: 1rem;
+      font-size: 0.98rem;
+      color: #b8d8d8;
+    }
+    .theme-b .fallback a {
+      color: #f6b36b;
+      text-decoration: underline;
+    }
+    .theme-b .fallback a:hover {
+      text-decoration: none;
+      color: #3a3a3a;
+    }
+    .theme-b .frame-logo {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      width: 60px;
+      height: 60px;
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 10;
+    }
+    @media (max-width: 600px) {
+      .theme-b h1 { font-size: 1.3rem; }
+      .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.03rem; margin: 0.5rem auto; }
+      .theme-b button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
+      .theme-b iframe { height: 350px; }
+      .theme-b .frame-logo {
+        width: 40px;
+        height: 40px;
+        right: 0.5rem;
+        bottom: 0.5rem;
+      }
+    }
+
+    /* --- Toolbar: crisp, opaque, professioneel --- */
+    .bottom-toolbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      padding: 0.7rem 0 0.5rem 0;
+      z-index: 2000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      border-top: 1.5px solid #e0e0e0;
+      box-shadow: 0 -2px 16px 0 #0002;
+      pointer-events: none;
+      transition: background 0.2s;
+    }
+    .bottom-toolbar button {
+      pointer-events: auto;
+      background: none;
+      border: none;
+      box-shadow: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: filter 0.2s;
+    }
+    .bottom-toolbar button:active {
+      filter: brightness(0.92);
+    }
+    .home-btn .home-icon {
+      display: block;
+      width: 36px;
+      height: 36px;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s, fill 0.2s;
+      background: none;
+    }
+    body.theme-a .home-btn .home-icon,
+    body:not(.theme-b) .home-btn .home-icon {
+      stroke: #ffa500;
+      fill: #fffbe8;
+    }
+    body.theme-b .home-btn .home-icon {
+      stroke: #b8d8d8;
+      fill: #f6e7d6;
+    }
+    .home-btn:hover .home-icon {
+      filter: brightness(0.95) drop-shadow(0 2px 6px #0001);
+    }
+    .theme-switch-btn {
+      min-width: 64px;
+      min-height: 34px;
+      padding: 0 20px;
+      border-radius: 18px;
+      border: 2px solid;
+      background: #fff;
+      font-family: 'Quicksand', Arial, sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-align: center;
+      box-shadow: 0 2px 8px #0001;
+      transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      color: #b8d8d8;
+      border-color: #b8d8d8;
+    }
+    .theme-switch-btn:hover {
+      background: #f6faff;
+      color: #ffa500;
+      border-color: #ffa500;
+      box-shadow: 0 4px 16px #b8d8d822;
+    }
+    body.theme-b .theme-switch-btn {
+      color: #ffa500;
+      border-color: #ffa500;
+    }
+    body.theme-b .theme-switch-btn:hover {
+      color: #b8d8d8;
+      border-color: #b8d8d8;
+      background: #fdf6ef;
+    }
+    @media (max-width: 600px) {
+      .bottom-toolbar {
+        gap: 2.5rem;
+        padding: 0.2rem 0 0.15rem 0;
+      }
+      .home-btn .home-icon { width: 28px; height: 28px; }
+      .theme-switch-btn { min-width: 48px; min-height: 28px; font-size: 0.98rem; padding: 0 10px; }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
   <h1>Innerlijke Stilte Oefening</h1>
-  <button id="reset-button">Begin opnieuw</button>
 
   <!-- Introductie zichtbaar bij laden -->
   <div class="intro" id="intro">
@@ -173,17 +458,22 @@
       Dit is een kleine makkelijke oefening van drie stappen.<br>
       Bedoeld om innerlijke rust te ervaren.<br>
       Gebruik oortjes als je dat prettig vindt.<br><br>
-      Wat we gaan doen:<br>
-      Stap 1: Korte uitleg = alleen luisteren.<br>
-      Stap 2: Kennismaking met de Methode = luisteren en enkele woorden hardop herhalen.<br>
-      Stap 3: Oefening = oefen door mijn woorden herhalen. Doe dit 3x.<br><br>
+      Wat we gaan doen:
+    </p>
+    <ol class="intro-list">
+      <li>Korte uitleg = alleen luisteren.</li>
+      <li>Kennismaking met de Methode = luisteren en enkele woorden hardop herhalen.</li>
+      <li>Oefening = oefen door mijn woorden herhalen. Doe dit 3x.</li>
+    </ol>
+    <p>
       Je mag de 3 oefeningen onderbreken en later oppakken. Ik zal onthouden waar je bent gebleven.<br>
       Na 3x oefenen volgen enkele vragen om je ervaring te delen. <br>
       Het doel van deze oefening is om te onderzoeken bij wie dit werkt en hoe het wordt ervaren.<br><br>
       Na de vragen kun je zelf zo vaak als je wil verder oefenen in stap 3.<br>
-      Als je helemaal opnieuw wil beginnen ga dan naar "opnieuw beginnen" rechts boven.<br>
+      Als je helemaal opnieuw wil beginnen ga dan naar het huisje rechts boven.<br>
     </p>
     <button id="continue-intro">Verder</button>
+    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Stap 1 -->
@@ -193,12 +483,12 @@
       Het duurt ongeveer 1 minuut. <br>
       Luister naar wat ik te zeggen heb.<br>
     </p>
-    <button id="play-1">Uitleg</button>
+    <button id="play-1" class="audio-progress"><span>Uitleg</span><div class="progress-bar"></div></button>
     <button id="next-1" disabled>Volgende</button>
-    <img src="Media/44BD1B5F-FA05-4B63-B358-D1FFEA9971FC.jpg" alt="Testafbeelding" width="200">
     <audio id="audio-1" src="Media/BTN-1.mp3" preload="auto" type="audio/mpeg">
       Your browser does not support audio playback.
     </audio>
+    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Stap 2 -->
@@ -211,11 +501,12 @@
       En dat je zachtjes tegen jezelf kunt praten.<br>
       Het wijst zichzelf.<br>
     </p>
-    <button id="play-2">Methode</button>
+    <button id="play-2" class="audio-progress"><span>Methode</span><div class="progress-bar"></div></button>
     <button id="next-2" disabled>Volgende</button>
     <audio id="audio-2" src="Media/BTN-2.mp3" preload="auto" type="audio/mpeg">
       Your browser does not support audio playback.
     </audio>
+    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Stap 3 -->
@@ -228,12 +519,13 @@
       Je mag deze 3 oefeningen spreiden over meerdere momenten.<br>
       Na 3 keer oefenen komt het vragenlijstje.<br><br>
       Daarna kun je, desgewenst, stap drie blijven herhalen zo vaak als je wil.<br>
-      Mocht je op een ander tijdstip deze hele oefening vanaf het begin willen herhalen, ga dan naar "opnieuw beginnen" rechts boven.<br>
+      Mocht je op een ander tijdstip deze hele oefening vanaf het begin willen herhalen, ga dan naar het huisje rechts boven.<br>
     </p>
-    <button id="play-3">Oefening</button><span id="count-3">Herhalingen: 0</span>
+    <button id="play-3" class="audio-progress"><span>Oefening</span><div class="progress-bar"></div></button><span id="count-3">Herhalingen: 0</span>
     <audio id="audio-3" src="Media/BTN-3.mp3" preload="auto" type="audio/mpeg">
       Your browser does not support audio playback.
     </audio>
+    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
   <!-- Evaluatie -->
@@ -253,145 +545,224 @@
       width="640" height="1911" frameborder="0" marginheight="0" marginwidth="0">
       Laden…
     </iframe>
+    <img src="Media/logo.png" alt="Innerlijke Stilte Oefening logo" class="frame-logo">
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      let step3Count = parseInt(localStorage.getItem('step3Count')) || 0;
-      const countDisplay = document.getElementById('count-3');
+  <!-- Toolbar onderaan -->
+  <div class="bottom-toolbar">
+    <button id="theme-switch" class="theme-switch-btn" title="Wissel stijl" aria-label="Wissel stijl">Stijl</button>
+    <button id="reset-button" class="home-btn" title="Home" aria-label="Home">
+      <svg class="home-icon" viewBox="0 0 32 32" fill="none">
+        <path d="M6 16L16 8L26 16" />
+        <rect x="10" y="16" width="12" height="10" rx="2" />
+      </svg>
+    </button>
+  </div>
 
-      function updateCount() {
-        countDisplay.textContent = 'Herhalingen: ' + step3Count;
+<script>
+  // --- THEMA WISSELEN OP BASIS VAN URL EN KNOP ---
+  function setTheme(theme) {
+    document.body.classList.remove('theme-a', 'theme-b');
+    const themeSwitch = document.getElementById('theme-switch');
+    if (theme === 'B') {
+      document.body.classList.add('theme-b');
+      themeSwitch.textContent = 'Stijl';
+      themeSwitch.setAttribute('aria-label', 'Wissel naar stijl A');
+      themeSwitch.setAttribute('title', 'Wissel naar stijl A');
+    } else {
+      document.body.classList.add('theme-a');
+      themeSwitch.textContent = 'Stijl';
+      themeSwitch.setAttribute('aria-label', 'Wissel naar stijl B');
+      themeSwitch.setAttribute('title', 'Wissel naar stijl B');
+    }
+  }
+
+  function getThemeFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('theme');
+  }
+  function getThemeFromStorage() {
+    return sessionStorage.getItem('theme');
+  }
+  function setThemeInStorage(theme) {
+    sessionStorage.setItem('theme', theme);
+  }
+
+  // Init theme
+  let theme = getThemeFromUrl() || getThemeFromStorage() || 'A';
+  setTheme(theme);
+
+  // Theme wissel knop
+  document.getElementById('theme-switch').onclick = function() {
+    theme = (theme === 'A') ? 'B' : 'A';
+    setTheme(theme);
+    setThemeInStorage(theme);
+  };
+
+  // --- REST VAN JE SCRIPT (audio, stappen, etc) ---
+  document.addEventListener('DOMContentLoaded', function() {
+    let step3Count = parseInt(localStorage.getItem('step3Count')) || 0;
+    const countDisplay = document.getElementById('count-3');
+
+    function updateCount() {
+      countDisplay.textContent = 'Herhalingen: ' + step3Count;
+    }
+
+    function showStep(id) {
+      document.getElementById('intro').style.display = 'none';
+      document.querySelectorAll('.step').forEach(el => el.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      localStorage.setItem('currentStep', id);
+    }
+
+    // Init: toon alleen intro
+    document.getElementById('intro').style.display = 'block';
+
+    // Verder-knop toont stap-1 of opgeslagen stap
+    document.getElementById('continue-intro').onclick = function() {
+      const saved = localStorage.getItem('currentStep');
+      showStep(saved && ['step-1','step-2','step-3','evaluation-step'].includes(saved) ? saved : 'step-1');
+    };
+
+    // --- AUDIO BUTTON LOGIC (PAUSE/RESUME/REPLAY) ---
+    function setupAudioControls(audioId, btnId, nextId, defaultText) {
+      const audio = document.getElementById(audioId);
+      const btn = document.getElementById(btnId);
+      const progressBar = btn.querySelector('.progress-bar');
+      const next = nextId ? document.getElementById(nextId) : null;
+
+      function setBtnText(state) {
+        btn.querySelector('span').textContent = (
+          state === 'default' ? defaultText :
+          state === 'playing' ? 'Pauze' :
+          state === 'paused' ? 'Verder' : 'Opnieuw'
+        );
       }
 
-      function showStep(id) {
-        document.getElementById('intro').style.display = 'none';
-        document.querySelectorAll('.step').forEach(el => el.style.display = 'none');
-        document.getElementById(id).style.display = 'block';
-        localStorage.setItem('currentStep', id);
-      }
+      setBtnText('default');
+      if (next) next.disabled = true;
 
-      // Init: toon alleen intro
-      document.getElementById('intro').style.display = 'block';
-
-      // Verder-knop toont stap-1 of opgeslagen stap
-      document.getElementById('continue-intro').onclick = function() {
-        const saved = localStorage.getItem('currentStep');
-        showStep(saved && ['step-1','step-2','step-3','evaluation-step'].includes(saved) ? saved : 'step-1');
-      };
-
-      // --- AUDIO BUTTON LOGIC (PAUSE/RESUME/REPLAY) ---
-      function setupAudioControls(audioId, btnId, nextId, defaultText) {
-        const audio = document.getElementById(audioId);
-        const btn = document.getElementById(btnId);
-        const next = nextId ? document.getElementById(nextId) : null;
-
-        function setBtnText(state) {
-          if (state === 'default') btn.textContent = defaultText;
-          else if (state === 'playing') btn.textContent = 'Pauze';
-          else if (state === 'paused') btn.textContent = 'Verder';
-          else if (state === 'ended') btn.textContent = 'Opnieuw';
+      // Update progress bar
+      function updateProgress() {
+        if (audio.duration) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progressBar.style.width = percent + '%';
+        } else {
+          progressBar.style.width = '0%';
         }
+        if (!audio.paused && !audio.ended) {
+          requestAnimationFrame(updateProgress);
+        }
+      }
 
-        setBtnText('default');
-        if (next) next.disabled = true;
-
-        btn.onclick = function() {
-          if (audio.ended || audio.currentTime === audio.duration) {
-            audio.currentTime = 0;
-            audio.play();
-            setBtnText('playing');
-            if (next) next.disabled = true;
-            return;
-          }
-          if (!audio.paused && !audio.ended) {
-            audio.pause();
-            setBtnText('paused');
-            if (next) next.disabled = true;
-            return;
-          }
-          if (audio.paused && !audio.ended) {
-            audio.play();
-            setBtnText('playing');
-            if (next) next.disabled = true;
-            return;
-          }
-        };
-
-        audio.onplay = function() {
+      btn.onclick = function() {
+        const btnText = btn.querySelector('span').textContent.trim();
+        // Altijd opnieuw starten als audio is geëindigd OF knop op "Opnieuw" staat
+        if (audio.ended || audio.currentTime === audio.duration || btnText === 'Opnieuw') {
+          audio.currentTime = 0;
+          progressBar.style.width = '0%';
           setBtnText('playing');
           if (next) next.disabled = true;
-        };
-        audio.onpause = function() {
-          if (!audio.ended) {
-            setBtnText('paused');
-            if (next) next.disabled = true;
-          }
-        };
-        audio.onended = function() {
-          setBtnText('ended');
-          if (next) next.disabled = false;
-        };
-
-        function resetBtn() {
-          setBtnText('default');
-          if (next) next.disabled = true;
-          audio.currentTime = 0;
+          audio.play();
+          requestAnimationFrame(updateProgress);
+          return;
         }
-        return resetBtn;
-      }
-
-      // Stap 1
-      const resetBtn1 = setupAudioControls('audio-1', 'play-1', 'next-1', 'Uitleg');
-      document.getElementById('next-1').onclick = function() { 
-        resetBtn1();
-        showStep('step-2'); 
+        // Pauzeren
+        if (!audio.paused && !audio.ended) {
+          audio.pause();
+          setBtnText('paused');
+          if (next) next.disabled = true;
+          return;
+        }
+        // Verder spelen na pauze
+        if (audio.paused && !audio.ended) {
+          setBtnText('playing');
+          if (next) next.disabled = true;
+          audio.play();
+          requestAnimationFrame(updateProgress);
+          return;
+        }
       };
 
-      // Stap 2
-      const resetBtn2 = setupAudioControls('audio-2', 'play-2', 'next-2', 'Methode');
-      document.getElementById('next-2').onclick = function() { 
-        resetBtn2();
-        showStep('step-3'); 
+      audio.onplay = function() {
+        setBtnText('playing');
+        if (next) next.disabled = true;
+        requestAnimationFrame(updateProgress);
+      };
+      audio.onpause = function() {
+        if (!audio.ended) {
+          setBtnText('paused');
+          if (next) next.disabled = true;
+        }
+      };
+      audio.onended = function() {
+        setBtnText('ended');
+        progressBar.style.width = '100%';
+        if (next) next.disabled = false;
       };
 
-      // Stap 3 (zonder next-knop)
-      setupAudioControls('audio-3', 'play-3', null, 'Oefening');
-
-      // Stap 3 extra logica voor herhalingen
-      const audio3 = document.getElementById('audio-3');
-      const btn3 = document.getElementById('play-3');
-      function setBtn3Text(state) {
-        if (state === 'default') btn3.textContent = 'Oefening';
-        else if (state === 'playing') btn3.textContent = 'Pauze';
-        else if (state === 'paused') btn3.textContent = 'Verder';
-        else if (state === 'ended') btn3.textContent = 'Opnieuw';
+      function resetBtn() {
+        setBtnText('default');
+        if (next) next.disabled = true;
+        audio.currentTime = 0;
+        progressBar.style.width = '0%';
       }
-      setBtn3Text('default');
-      btn3.disabled = false;
+      return resetBtn;
+    }
+
+    // Stap 1
+    const resetBtn1 = setupAudioControls('audio-1', 'play-1', 'next-1', 'Uitleg');
+    document.getElementById('next-1').onclick = function() { 
+      resetBtn1();
+      showStep('step-2'); 
+    };
+
+    // Stap 2
+    const resetBtn2 = setupAudioControls('audio-2', 'play-2', 'next-2', 'Methode');
+    document.getElementById('next-2').onclick = function() { 
+      resetBtn2();
+      showStep('step-3'); 
+    };
+
+    // Stap 3 (zonder next-knop)
+    setupAudioControls('audio-3', 'play-3', null, 'Oefening');
+
+    // Stap 3 extra logica voor herhalingen
+    const audio3 = document.getElementById('audio-3');
+    const btn3 = document.getElementById('play-3');
+    function setBtn3Text(state) {
+      btn3.querySelector('span').textContent = (
+        state === 'default' ? 'Oefening' :
+        state === 'playing' ? 'Pauze' :
+        state === 'paused' ? 'Verder' : 'Opnieuw'
+      );
+    }
+    setBtn3Text('default');
+    btn3.disabled = false;
+    updateCount();
+
+    audio3.onended = function() {
+      step3Count++;
+      localStorage.setItem('step3Count', step3Count);
       updateCount();
+      setBtn3Text('ended');
+      btn3.disabled = false;
+      btn3.querySelector('.progress-bar').style.width = '100%';
+      if (step3Count >= 3) showStep('evaluation-step'); else showStep('step-3');
+    };
 
-      audio3.onended = function() {
-        step3Count++;
-        localStorage.setItem('step3Count', step3Count);
-        updateCount();
-        setBtn3Text('ended');
-        btn3.disabled = false;
-        if (step3Count >= 3) showStep('evaluation-step'); else showStep('step-3');
-      };
+    // Evaluation fallback hides form on click
+    document.getElementById('fallback-link').onclick = function() {
+      localStorage.setItem('evaluated','true');
+      showStep('step-3');
+    };
 
-      // Evaluation fallback hides form on click
-      document.getElementById('fallback-link').onclick = function() {
-        localStorage.setItem('evaluated','true');
-        showStep('step-3');
-      };
-
-      // Reset button logic
-      document.getElementById('reset-button').onclick = function() {
-        localStorage.clear();
-        location.reload();
-      };
-    });
-  </script>
+    // Reset button logic (nu Home icoon)
+    document.getElementById('reset-button').onclick = function() {
+      localStorage.clear();
+      location.reload();
+    };
+  });
+</script>
 </body>
 </html>
