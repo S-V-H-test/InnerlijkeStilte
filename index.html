@@ -69,6 +69,13 @@
       outline: 2px solid #fff3 !important;
       outline-offset: 2px;
       transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-width: 120px;
+      min-height: 48px;
+      padding: 0 1.5em;
     }
     .accent-btn:hover, .accent-btn:active {
       background: linear-gradient(90deg, #ffd580 0%, #ffb84d 100%) !important;
@@ -261,7 +268,7 @@
       }
       .theme-a h1, body:not(.theme-b) h1 { font-size: 1.5rem; }
       .theme-a .intro, .theme-a .step, body:not(.theme-b) .intro, body:not(.theme-b) .step,
-      .theme-b .intro, .theme-b .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; padding-bottom: 60px; }
+      .theme_b .intro, .theme_b .step { width: 98%; font-size: 1.05rem; margin: 0.5rem auto; padding-bottom: 60px; }
       .theme-a button, body:not(.theme-b) button { font-size: 1rem; padding: 0.7rem 1.2rem; width: 100%; }
       .theme-a iframe, body:not(.theme-b) iframe { height: 500px; }
     }
@@ -459,6 +466,32 @@
       border-color: #ffe0b2 !important;
       box-shadow: 0 4px 16px #ffb84d33 !important;
     }
+    .bottom-toolbar .accent-btn.cta-btn {
+      background: linear-gradient(90deg, #ffb84d 0%, #ffd580 100%) !important;
+      color: #23262b !important;
+      border: 2.5px solid #ffb84d !important;
+      font-size: 1.13rem !important;
+      font-weight: 800 !important;
+      box-shadow: 0 2px 12px #ffb84d33;
+      border-radius: 18px !important;
+      outline: 2px solid #fff3 !important;
+      outline-offset: 2px;
+      transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 48px;
+      min-width: 120px;
+      padding: 0 1.5em;
+    }
+    .bottom-toolbar .accent-btn.cta-btn:hover,
+    .bottom-toolbar .accent-btn.cta-btn:active {
+      background: linear-gradient(90deg, #ffd580 0%, #ffb84d 100%) !important;
+      color: #23262b !important;
+      border-color: #ffd580 !important;
+      box-shadow: 0 4px 24px #ffb84d55;
+    }
     .home-btn .home-icon {
       display: block;
       margin: auto;
@@ -493,17 +526,25 @@
         min-height: 34px;
         font-size: 0.98rem;
       }
+      .bottom-toolbar .accent-btn.cta-btn {
+        height: 34px;
+        font-size: 0.98rem !important;
+        min-width: 80px;
+        padding: 0 0.7em;
+      }
       .home-btn .home-icon { width: 22px; height: 22px; }
     }
   </style>
 </head>
 <body>
   <div class="overlay"></div>
+  <br>
   <h1>Innerlijke Stilte Oefening</h1>
 
   <!-- Introductie zichtbaar bij laden -->
   <div class="intro visible" id="intro" aria-live="polite">
     <p>
+      <br><br>
       Dit is een kleine makkelijke oefening van drie stappen.<br>
       Bedoeld om innerlijke rust te ervaren.<br>
       Gebruik oortjes als je dat prettig vindt.<br><br>
@@ -515,13 +556,13 @@
       <li>Oefening = oefen door mijn woorden herhalen. Doe dit 3x.</li>
     </ol>
     <p>
-      Je mag de 3 oefeningen onderbreken en later oppakken. <br>
+      Je mag stap 3 onderbreken en later oppakken. <br>
       Ik zal onthouden waar je bent gebleven.<br>
-      Na 3x oefenen volgen enkele vragen om je ervaring te delen. <br>
+      Na 3x oefenen volgen enkele vragen. <br>
       Het doel van deze oefening is tweeledig.<br>
-      Enerzijds is het om iedereen te helpen met het vinden van innerlijke rust.<br>
-      Anderzijds is het om te onderzoeken bij wie werkt het en bij wie niet.<br>
-      En hoe het wordt ervaren.<br><br>
+      - om iedereen te helpen met het vinden van innerlijke rust.<br>
+      - om te onderzoeken bij wie werkt het en bij wie niet.<br>
+      <br><br>
       Na de vragen kun je zelf zo vaak als je wil verder oefenen in stap 3.<br>
       Als je helemaal opnieuw wil beginnen ga dan naar het "home" onderaan.<br>
     </p>
@@ -605,6 +646,9 @@
   <!-- Universele toolbar onderaan, altijd zichtbaar, altijd wit, gecentreerd -->
   <div class="bottom-toolbar">
     <button id="theme-switch" class="toolbar-btn" title="Wissel stijl" aria-label="Wissel stijl">Stijl</button>
+    <a href="optin.html" class="toolbar-btn accent-btn cta-btn" style="text-decoration:none;">
+      Wat is dit ?
+    </a>
     <button id="reset-button" class="toolbar-btn home-btn" title="Home" aria-label="Home">
       <svg class="home-icon" viewBox="0 0 32 32" fill="none">
         <path d="M6 16L16 8L26 16" />
