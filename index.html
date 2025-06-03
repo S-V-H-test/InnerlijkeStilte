@@ -698,10 +698,78 @@
   };
 
   // Reset knop (home)
-  document.getElementById('reset-button').onclick = function() {
+ // ...bestaande code...
+
+// Custom bevestigingsvenster voor reset/home
+function showResetConfirm() {
+  // Verwijder bestaande dialogen
+  const oldDialog = document.getElementById('reset-confirm-dialog');
+  if (oldDialog) oldDialog.remove();
+
+  // Maak overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'reset-confirm-dialog';
+  overlay.style.position = 'fixed';
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = '100vw';
+  overlay.style.height = '100vh';
+  overlay.style.background = 'rgba(0,0,0,0.35)';
+  overlay.style.zIndex = 9999;
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'flex-start';
+  overlay.style.justifyContent = 'center';
+
+  // Maak dialoogvenster
+  const dialog = document.createElement('div');
+  dialog.className = 'dialog';
+  dialog.style.background = '#fff';
+  dialog.style.borderRadius = '18px';
+  dialog.style.maxWidth = '340px';
+  dialog.style.margin = '20vh auto 0 auto';
+  dialog.style.padding = '2em 1.5em 1.2em 1.5em';
+  dialog.style.boxShadow = '0 4px 24px #0002';
+  dialog.style.textAlign = 'center';
+  dialog.style.position = 'relative';
+
+  // Tekst
+  const tekst = document.createElement('p');
+  tekst.textContent = 'Weet je zeker dat je helemaal opnieuw wilt beginnen? Je voortgang gaat verloren.';
+  tekst.style.color = '#23262b';
+  tekst.style.fontSize = '1.08em';
+  tekst.style.marginBottom = '1.5em';
+  dialog.appendChild(tekst);
+
+  // Knoppen
+  const btnJa = document.createElement('button');
+  btnJa.textContent = 'Ja, resetten';
+  btnJa.className = 'toolbar-btn accent-btn cta-btn';
+  btnJa.style.marginRight = '1em';
+
+  const btnNee = document.createElement('button');
+  btnNee.textContent = 'Annuleren';
+  btnNee.className = 'toolbar-btn accent-btn cta-btn';
+
+  btnJa.onclick = function() {
     localStorage.clear();
     location.reload();
   };
+  btnNee.onclick = function() {
+    overlay.remove();
+  };
+
+  dialog.appendChild(btnJa);
+  dialog.appendChild(btnNee);
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+}
+
+// Vervang de bestaande onclick van de reset-button:
+document.getElementById('reset-button').onclick = function(e) {
+  e.preventDefault();
+  showResetConfirm();
+};
+
 
   document.addEventListener('DOMContentLoaded', function() {
     let step3Count = parseInt(localStorage.getItem('step3Count')) || 0;
@@ -895,8 +963,15 @@
       setBtn3Text('ended');
       btn3.disabled = false;
       btn3.querySelector('.progress-bar').style.width = '100%';
-      if (step3Count >= 3) showStep('evaluation-step'); else showStep('step-3');
-    };
+if (step3Count >= 3) {
+  if (localStorage.getItem('optinDone') === 'true') {
+    window.location.href = 'evaluatie.html';
+  } else {
+    window.location.href = 'optin.html?fromflow=1';
+  }
+} else {
+  showStep('step-3');
+}    };
 
     // Evaluation fallback hides form on click
     document.getElementById('fallback-link').onclick = function() {

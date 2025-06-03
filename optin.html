@@ -62,7 +62,9 @@
     #mlb2-26790896.ml-form-embedContainer {
       margin-top: 1.5em;
     }
-    /* Loader en toegankelijkheid */
+    .ml-form-successContent h4, .ml-form-successContent p {
+      text-align: center !important;
+    }
     .ml-form-embedSubmitLoad {
       display: inline-block;
       width: 20px;
@@ -78,22 +80,26 @@
       clip: rect(0,0,0,0);
       border: 0;
     }
-    .ml-form-successContent h4, .ml-form-successContent p {
-      text-align: center !important;
-    }
   </style>
   <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1748530");</style>
 </head>
 <body>
   <div class="optin-container">
     <img src="Media/stilte-bubbel.jpg" alt="Stilte bubbel" class="header-image">
-    <a href="index.html" class="back-link">&larr; Terug naar oefening</a>
+    <a href="index.html" class="back-link" id="back-link">&larr; Terug naar oefening</a>
     <h1>Wat is dit?</h1>
     <p>
-      Deze oefening helpt je om direct innerlijke rust te ervaren.<br>
-      Het is een korte, praktische methode die je overal kunt toepassen.<br><br>
-      Wil je weten hoe het werkt, of deze skill leren toepassen in je dagelijks leven?<br>
-      Laat je e-mailadres achter en ontvang gratis uitleg, tips en updates.
+      Wat je net voelde is trainbaar !<br>
+
+Wie zojuist een moment van volledige mentale stilte had... Dat is geen toeval!  Het is een cognitieve interrupt. Een trainbare vaardigheid. <br><br>
+
+Deze stilte is te verlengen en toe te passen in een aantal zeer bruikbare situaties. Ik kan je dit leren.<br>
+
+Ook als er geen stilte was zullen onze trainingen  je zichtbaar meer rust geven.<br><br>
+
+Wil je deze skill leren toepassen in je leven?<br><br> 
+
+Coming up...: een SLAAPTRAINER waarin deze vaardigheid terugkomt. <br><br>
     </p>
     <!-- MailerLite embed-formulier hieronder -->
     <div id="mlb2-26790896" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-26790896">
@@ -112,13 +118,13 @@
                 <label class="checkbox">
                   <input type="checkbox" required>
                   <div class="label-description">
-                    <p>Ik wil nieuws en updates ontvangen.</p>
+                    <p></p>
                   </div>
                 </label>
               </div>
               <input type="hidden" name="ml-submit" value="1">
               <div class="ml-form-embedSubmit">
-                <button type="submit" class="primary">Aanmelden</button>
+                <button type="submit" class="primary">Ja, ik wil dit leren</button>
                 <button disabled="disabled" style="display: none;" type="button" class="loading">
                   <div class="ml-form-embedSubmitLoad"></div>
                   <span class="sr-only">Laden...</span>
@@ -140,10 +146,24 @@
   </div>
   <!-- MailerLite scripts -->
   <script>
+    // Verberg de terug-knop als je uit de flow komt (optin.html?fromflow=1)
+    if (window.location.search.indexOf('fromflow=1') !== -1) {
+      var backLink = document.getElementById('back-link');
+      if (backLink) backLink.style.display = 'none';
+    }
+
     function ml_webform_success_26790896() {
       var $ = ml_jQuery || jQuery;
       $('.ml-subscribe-form-26790896 .row-success').show();
       $('.ml-subscribe-form-26790896 .row-form').hide();
+      // Zet opt-in vlag
+      localStorage.setItem('optinDone', 'true');
+      // Alleen redirecten naar evaluatie als je uit de flow komt
+      if (window.location.search.indexOf('fromflow=1') !== -1) {
+        setTimeout(function() {
+          window.location.href = 'evaluatie.html';
+        }, 2000);
+      }
     }
   </script>
   <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
