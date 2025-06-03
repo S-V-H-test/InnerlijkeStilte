@@ -19,11 +19,22 @@
     .optin-container {
       background: #fff;
       border-radius: 18px;
-      max-width: 420px;
+      max-width: 440px;
       margin: 2em auto;
       padding: 2.5em 1.5em 2em 1.5em;
       box-shadow: 0 4px 24px #0001;
       text-align: center;
+    }
+    .header-image {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1em;
+      box-shadow: 0 4px 24px #ffb84d33;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
     h1 {
       color: #ffb84d;
@@ -48,14 +59,34 @@
       color: #23262b;
       text-decoration: underline;
     }
-    /* MailerLite form styling (optioneel, afhankelijk van embed) */
-    .mailerlite-form {
-      margin-top: 1.2em;
+    #mlb2-26790896.ml-form-embedContainer {
+      margin-top: 1.5em;
+    }
+    /* Loader en toegankelijkheid */
+    .ml-form-embedSubmitLoad {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    .ml-form-successContent h4, .ml-form-successContent p {
+      text-align: center !important;
     }
   </style>
+  <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1748530");</style>
 </head>
 <body>
   <div class="optin-container">
+    <img src="Media/stilte-bubbel.jpg" alt="Stilte bubbel" class="header-image">
     <a href="index.html" class="back-link">&larr; Terug naar oefening</a>
     <h1>Wat is dit?</h1>
     <p>
@@ -64,16 +95,60 @@
       Wil je weten hoe het werkt, of deze skill leren toepassen in je dagelijks leven?<br>
       Laat je e-mailadres achter en ontvang gratis uitleg, tips en updates.
     </p>
-    <!-- Plak hieronder je MailerLite embed-code -->
-    <div class="mailerlite-form">
-      <!-- Voorbeeld MailerLite embed-code (vervang deze door jouw eigen code) -->
-      <!--
-      <script>
-        // Hier komt de MailerLite embed code
-      </script>
-      -->
-      <!-- Einde voorbeeld -->
+    <!-- MailerLite embed-formulier hieronder -->
+    <div id="mlb2-26790896" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-26790896">
+      <div class="ml-form-align-center ">
+        <div class="ml-form-embedWrapper embedForm">
+          <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1569325/forms/156212291329590325/subscribe" method="post" target="_blank">
+              <div class="ml-form-formContent">
+                <div class="ml-form-fieldRow ml-last-item">
+                  <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                    <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Email" autocomplete="email" required>
+                  </div>
+                </div>
+              </div>
+              <div class="ml-form-checkboxRow ml-validate-required">
+                <label class="checkbox">
+                  <input type="checkbox" required>
+                  <div class="label-description">
+                    <p>Ik wil nieuws en updates ontvangen.</p>
+                  </div>
+                </label>
+              </div>
+              <input type="hidden" name="ml-submit" value="1">
+              <div class="ml-form-embedSubmit">
+                <button type="submit" class="primary">Aanmelden</button>
+                <button disabled="disabled" style="display: none;" type="button" class="loading">
+                  <div class="ml-form-embedSubmitLoad"></div>
+                  <span class="sr-only">Laden...</span>
+                </button>
+              </div>
+              <input type="hidden" name="anticsrf" value="true">
+            </form>
+          </div>
+          <div class="ml-form-successBody row-success" style="display: none">
+            <div class="ml-form-successContent">
+              <h4>Bedankt!</h4>
+              <p>Je bent succesvol aangemeld voor de updates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- Einde MailerLite embed-formulier -->
   </div>
+  <!-- MailerLite scripts -->
+  <script>
+    function ml_webform_success_26790896() {
+      var $ = ml_jQuery || jQuery;
+      $('.ml-subscribe-form-26790896 .row-success').show();
+      $('.ml-subscribe-form-26790896 .row-form').hide();
+    }
+  </script>
+  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+  <script>
+    fetch("https://assets.mailerlite.com/jsonp/1569325/forms/156212291329590325/takel")
+  </script>
 </body>
 </html>
