@@ -990,6 +990,28 @@ if (step3Count >= 3) {
       showStep('step-3');
     };
   });
+
+  // Google Form fallback automatisch tonen als iframe niet laadt
+  document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.querySelector('#evaluation-step iframe');
+    const fallback = document.querySelector('#evaluation-step .fallback');
+    if (iframe && fallback) {
+      // Verberg fallback standaard
+      fallback.style.display = 'none';
+
+      // Toon fallback als iframe niet binnen 5 seconden geladen is
+      let loaded = false;
+      iframe.onload = function() { loaded = true; };
+      setTimeout(function() {
+        if (!loaded) fallback.style.display = 'block';
+      }, 5000);
+
+      // Extra: als iframe een fout geeft (sommige browsers)
+      iframe.onerror = function() {
+        fallback.style.display = 'block';
+      };
+    }
+  });
 </script>
 </body>
 </html>
